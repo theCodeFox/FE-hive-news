@@ -1,1 +1,64 @@
+ul {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+li {
+    width: 50%;
+    height: 5em;
+    text-align: center;
+}
 
+.nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 1em;
+    margin: 0 1em;
+    border: dotted 2px blue;
+}
+.nav-link {
+    padding: 0 1em;
+    margin: 0 1em;
+    border: solid 2px red;
+    border-radius: 0.5em;
+}
+.main {
+    padding: 1em;
+    margin: 1em;
+    border: dotted 2px yellow;
+}
+.main-grid {
+    width: 100%;
+    display: grid;
+    align-content: center;
+    grid-template: 5em 30em / 50% 50%;
+    grid-template-areas:
+    "changeTopic changeArticle"
+    "topics articles"
+}
+.main-changeTopic {
+    grid-area: changeTopic;
+    border: dashed 1px grey;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.main-changeArticle {
+    grid-area: changeArticle;
+    border: dashed 1px grey;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.main-topics {
+    grid-area: topics;
+    border: dashed 1px grey;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.main-articles {
+    grid-area: articles;
+    border: dashed 1px grey;
+    padding: 0.5em;
+    margin: 0.5em;
+}
