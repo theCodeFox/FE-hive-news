@@ -44,7 +44,7 @@ class App extends Component {
         <Router className="main">
           <Home path="/" />
           <Topics path="/topics" topics={topics} articles={articles} />
-          <Users path="/users" users={users} />
+          <Users path="/users" users={users} articles={articles} />
         </Router>
         <nav className="nav">
           im a footer
