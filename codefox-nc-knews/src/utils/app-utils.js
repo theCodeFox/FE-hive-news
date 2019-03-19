@@ -7,3 +7,8 @@ export const fetchData = (endpoint) => {
       return data[endpoint]
     })
 };
+
+export const deleteArticle = (id) => {
+  return axios
+    .delete(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}`)
+}

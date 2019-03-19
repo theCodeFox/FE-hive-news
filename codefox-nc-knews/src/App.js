@@ -4,7 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import Topics from './components/Topics';
 import Users from './components/Users';
-import { fetchData} from './utils/app-utils';
+import { fetchData, deleteArticle } from './utils/app-utils';
 
 class App extends Component {
   state = {
@@ -29,6 +29,10 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate = (prevState) => {
+
+  }
+
   render() {
     const { user, users, topics, articles } = this.state;
     return (
@@ -44,7 +48,7 @@ class App extends Component {
         <Router className="main">
           <Home path="/" />
           <Topics path="/topics" topics={topics} articles={articles} />
-          <Users path="/users" users={users} articles={articles} />
+          <Users path="/users" users={users} articles={articles}  removeArticle={this.removeArticle}/>
         </Router>
         <nav className="nav">
           im a footer
@@ -52,6 +56,18 @@ class App extends Component {
       </div>
     );
   }
+  
+  removeArticle = (article_id) => {
+    console.log(article_id)
+    deleteArticle(article_id)
+    fetchData('articles')
+      .then(articles => {
+        return this.setState({
+          articles: articles
+        })
+      })
+  }
+
 }
 
 export default App;

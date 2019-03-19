@@ -11,7 +11,3 @@ export const getUserByUsername = (username) => {
 export const getRelatedUserArticles = (articles, username) => {
     return articles.filter(article => article.author === username)
 };
-
-export const getRelatedUserComments = (articles, username) => {
-    console.log('hi')
-};
