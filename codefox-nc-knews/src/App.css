@@ -1,13 +1,25 @@
 ul {
     list-style: none;
+    height: 95%;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
+    overflow: scroll;
 }
-li {
-    width: 50%;
-    height: 5em;
-    text-align: center;
+h3 {
+    margin: 0;
+    padding: 0;
+}
+h4 {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+img {
+    padding: 0.5em;
 }
 
 .nav {
@@ -29,7 +41,8 @@ li {
     margin: 1em;
     border: dotted 2px yellow;
 }
-.main-grid {
+
+.topic-article-grid {
     width: 100%;
     display: grid;
     align-content: center;
@@ -38,27 +51,74 @@ li {
     "changeTopic changeArticle"
     "topics articles"
 }
-.main-changeTopic {
+.topic-article-changeTopic {
     grid-area: changeTopic;
-    border: dashed 1px grey;
+    border: dashed 1px green;
     padding: 0.5em;
     margin: 0.5em;
 }
-.main-changeArticle {
+.topic-article-changeArticle {
     grid-area: changeArticle;
-    border: dashed 1px grey;
+    border: dashed 1px orange;
     padding: 0.5em;
     margin: 0.5em;
 }
-.main-topics {
+.topic-article-topics {
     grid-area: topics;
-    border: dashed 1px grey;
+    border: dashed 1px green;
     padding: 0.5em;
     margin: 0.5em;
 }
-.main-articles {
+.topic-article-articles {
     grid-area: articles;
-    border: dashed 1px grey;
+    border: dashed 1px orange;
     padding: 0.5em;
     margin: 0.5em;
+}
+.topic {
+    width: 100%;
+    text-align: center;
+    padding: 0 0 1em 0;
+}
+.article {
+    width: 100%;
+    padding: 0 0 1em 0;
+    text-align: center;
+}
+
+.users-comments-grid {
+    width: 100%;
+    display: grid;
+    align-content: center;
+    grid-template: 5em 30em / 50% 50%;
+    grid-template-areas:
+    "search list"
+    "info list"
+}
+.users-comments-search {
+    grid-area: search;
+    border: dashed 1px aqua;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.users-comments-info {
+    grid-area: info;
+    border: dashed 1px blueviolet;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.users-comments-list {
+    grid-area: list;
+    border: dashed 1px plum;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.user {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    overflow-x: hidden;
+    width: 100%;
+    padding: 0 0 1em 0;
+    text-align: center;
 }
