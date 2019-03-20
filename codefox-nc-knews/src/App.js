@@ -47,7 +47,12 @@ class App extends Component {
         </nav>
         <Router className="main">
           <Home path="/" />
-          <Topics path="/topics" topics={topics} articles={articles} />
+          <Topics
+            path="/topics"
+            topics={topics}
+            articles={articles}
+            filterArticles={this.filterArticles}
+          />
           <Users path="/users" users={users} articles={articles}  removeArticle={this.removeArticle}/>
           <ArticlePage
             path="/articles/:article_id"
@@ -55,7 +60,7 @@ class App extends Component {
           />
         </Router>
         <nav className="nav">
-          im a footer
+          footer
         </nav>
       </div>
     );
@@ -75,6 +80,16 @@ class App extends Component {
       .then(() => {
         return this.setState({
           articles: newArticles
+        })
+      })
+  }
+
+  filterArticles = (topic) => {
+    fetchData('articles')
+      .then(articles => {
+        const filteredArticles = articles.filter(article => article.topic === topic)
+        return this.setState({
+          articles: filteredArticles
         })
       })
   }
