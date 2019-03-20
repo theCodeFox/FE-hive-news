@@ -43,6 +43,9 @@ img {
     margin: 1em;
     border: dotted 2px yellow;
 }
+.comment-body {
+    font-style: italic;
+}
 
 .topic-article-grid {
     width: 100%;
@@ -89,6 +92,18 @@ img {
 .user-info-box {
     height: 100%;
     width: 100%;
+}
+.delete {
+    background-color: red;
+    width: 5em;
+    border-radius: 50%;
+    margin: 0 0.5em;
+}
+.view {
+    background-color: yellowgreen;
+    width: 5em;
+    border-radius: 50%;
+    margin: 0 0.5em;
 }
 
 .users-comments-grid {

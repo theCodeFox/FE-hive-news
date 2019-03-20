@@ -5,32 +5,32 @@ import Home from './components/Home';
 import Topics from './components/Topics';
 import Users from './components/Users';
 import { fetchData, deleteArticle } from './utils/app-utils';
+import ArticlePage from './components/ArticlePage';
 
 class App extends Component {
   state = {
     user: "",
     users: [],
     topics: [],
-    articles: [],
-    comments: []
+    articles: []
   }
   
   componentDidMount = () => {
-    const users = fetchData('users');
-    const topics = fetchData('topics');
-    const articles = fetchData('articles');
-    return Promise.all([users, topics, articles])
-    .then(([users, topics, articles]) => {
-      return this.setState({
-        users: users,
-        topics: topics,
-        articles: articles
+    this.fetchAllData()
+      .then(([users, topics, articles]) => {
+        return this.setState({
+          users: users,
+          topics: topics,
+          articles: articles
       })
     })
   }
 
-  componentDidUpdate = (prevState) => {
-
+  componentDidUpdate = (prevProps, prevState) => {
+    const changedState = prevState !== this.state || prevProps !== this.props;
+    if (changedState) {
+      this.fetchAllData();
+    }
   }
 
   render() {
@@ -49,6 +49,10 @@ class App extends Component {
           <Home path="/" />
           <Topics path="/topics" topics={topics} articles={articles} />
           <Users path="/users" users={users} articles={articles}  removeArticle={this.removeArticle}/>
+          <ArticlePage
+            path="/articles/:article_id"
+            removeArticle={this.removeArticle}
+          />
         </Router>
         <nav className="nav">
           im a footer
@@ -56,14 +60,21 @@ class App extends Component {
       </div>
     );
   }
+
+  fetchAllData = () => {
+    const users = fetchData('users');
+    const topics = fetchData('topics');
+    const articles = fetchData('articles');
+    return Promise.all([users, topics, articles])
+  }
   
   removeArticle = (article_id) => {
-    console.log(article_id)
+    console.log(this.state.articles)
+    const newArticles = this.state.articles.filter(article => article.article_id !== article_id)
     deleteArticle(article_id)
-    fetchData('articles')
-      .then(articles => {
+      .then(() => {
         return this.setState({
-          articles: articles
+          articles: newArticles
         })
       })
   }

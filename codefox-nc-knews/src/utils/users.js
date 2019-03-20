@@ -11,3 +11,16 @@ export const getUserByUsername = (username) => {
 export const getRelatedUserArticles = (articles, username) => {
     return articles.filter(article => article.author === username)
 };
+
+export const getRelatedUserComments = (username) => {
+    return axios
+      .get(`https://thecodefox-nc-knews.herokuapp.com/api/users/${username}/comments`)
+      .then(({ data }) => {
+          return data.comments
+      })
+};
+
+export const deleteComment = (id) => {
+    return axios
+      .delete(`https://thecodefox-nc-knews.herokuapp.com/api/comments/${id}`)
+  }
