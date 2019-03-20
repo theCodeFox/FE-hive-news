@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDateTime } from '../utils/app-utils';
+import { formatDateTime, voteHeart } from '../utils/app-utils';
 import { navigate } from '@reach/router';
 
 const Article = ({ article }) => {
@@ -8,7 +8,7 @@ const Article = ({ article }) => {
       <h3>{article.title}</h3>
       <p>Author: {article.author}</p>
       <p>{formattedDateTime}</p>
-      <p>Votes: {article.votes}</p>
+      <p>{voteHeart(article.votes)} {article.votes}</p>
       <button className="view" onClick={() => {
       navigate(`/articles/${article.article_id}`, { state: { msg: 'article requested' }})
     }}>VIEW</button>

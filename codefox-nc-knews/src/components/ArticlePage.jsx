@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchArticleByID } from '../utils/app-utils';
+import { fetchArticleByID, voteHeart } from '../utils/app-utils';
 import { formatDateTime, fetchCommentsByArticleID } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
@@ -33,7 +33,7 @@ class ArticlePage extends Component {
         <h3>Title: {article.title}</h3>
         <h4>Author: {article.author}</h4>
         <h4>{formattedTime}</h4>
-        <h4>Votes: {article.votes}</h4>
+        <h4>{voteHeart(article.votes)} {article.votes}</h4>
         <p>{article.body}</p>
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
         <h3>Comments {article.comment_count}</h3>

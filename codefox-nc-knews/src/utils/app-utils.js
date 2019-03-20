@@ -1,4 +1,5 @@
 import axios from 'axios';
+import React from 'react';
 
 export const fetchData = (endpoint) => {
   return axios
@@ -27,4 +28,10 @@ export const fetchArticleByID = (id) => {
 export const fetchCommentsByArticleID = (id) => {
   return axios
     .get(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`)
+}
+
+export const voteHeart = (votes) => {
+  return votes >= 0
+    ? <img src={require("../images/rainbow_heart.png")} alt="heart emoji" height="20px" width="20px" />
+    : <img src={require("../images/broken-heart-emoji.png")} alt="broken heart emoji" height="20px" width="20px" />
 }
