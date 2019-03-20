@@ -47,7 +47,7 @@ class ArticlePage extends Component {
         </p>
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
         <br /><br />
-        <h3>Comments {article.comment_count}</h3>
+        <h3>Comments - {article.comment_count}</h3>
         <button>ADD</button>
         <ul>{comments.map(comment => {
           return <ArticleComment

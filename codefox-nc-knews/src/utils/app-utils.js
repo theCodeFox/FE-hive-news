@@ -9,6 +9,14 @@ export const fetchData = (endpoint) => {
     })
 };
 
+export const fetchTotalArticles = () => {
+  return axios
+    .get('https://thecodefox-nc-knews.herokuapp.com/api/articles')
+    .then(({ data }) => {
+      return data.total_articles
+    })
+};
+
 export const deleteArticle = (id) => {
   return axios
     .delete(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}`)
