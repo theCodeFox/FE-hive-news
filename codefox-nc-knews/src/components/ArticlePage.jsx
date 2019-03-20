@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { fetchArticleByID, voteHeart } from '../utils/app-utils';
-import { formatDateTime, fetchCommentsByArticleID } from '../utils/app-utils';
+import {
+  fetchArticleByID,
+  voteHeart,
+  formatDateTime,
+  fetchCommentsByArticleID,
+  votingButtons,
+} from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
 
@@ -34,10 +39,10 @@ class ArticlePage extends Component {
         <h3>Title: {article.title}</h3>
         <h4>Author: {article.author}</h4>
         <h4>{formattedTime}</h4>
-        <h4>{voteHeart(article.votes)} {article.votes + voteChange}</h4>
+        <h4>{voteHeart(article.votes + voteChange)} {article.votes + voteChange}</h4>
         <p>{article.body}</p>
         <p>Tell us what you thought about the article:
-          <button className="vote" onClick={() => this.handleVote(1)} disabled={voteChange === 1}>{voteHeart(0)}</button> <button className="vote" onClick={() => this.handleVote(-1)} disabled={voteChange === -1}>{voteHeart(-1)}</button>
+          {votingButtons(voteChange, this.handleVote)}
         </p>
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
         <br /><br />

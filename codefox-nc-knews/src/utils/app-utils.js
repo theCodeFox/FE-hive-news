@@ -35,3 +35,7 @@ export const voteHeart = (votes) => {
     ? <img src={require("../images/rainbow_heart.png")} alt="heart emoji" height="20px" width="20px" />
     : <img src={require("../images/broken-heart-emoji.png")} alt="broken heart emoji" height="20px" width="20px" />
 }
+
+export const votingButtons = (voteChange, handleVote) => {
+  return <span><button className="vote" onClick={() => handleVote(1)} disabled={voteChange === 1}>{voteHeart(0)}</button> <button className="vote" onClick={() => handleVote(-1)} disabled={voteChange === -1}>{voteHeart(-1)}</button></span>
+}
