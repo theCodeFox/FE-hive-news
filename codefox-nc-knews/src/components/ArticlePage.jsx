@@ -5,6 +5,7 @@ import {
   formatDateTime,
   fetchCommentsByArticleID,
   votingButtons,
+  patchVote,
 } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
@@ -63,6 +64,7 @@ class ArticlePage extends Component {
     this.setState(prevState => ({
       voteChange: prevState.voteChange + voteChange
     }))
+    patchVote(voteChange, 'articles', this.state.article.article_id)
   }
 
   removeComment = (comment_id) => {

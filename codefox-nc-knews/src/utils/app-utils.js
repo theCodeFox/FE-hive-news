@@ -39,3 +39,9 @@ export const voteHeart = (votes) => {
 export const votingButtons = (voteChange, handleVote) => {
   return <span><button className="vote" onClick={() => handleVote(1)} disabled={voteChange === 1}>{voteHeart(0)}</button> <button className="vote" onClick={() => handleVote(-1)} disabled={voteChange === -1}>{voteHeart(-1)}</button></span>
 }
+
+export const patchVote = (voteChange, dataType, id) => {
+  const changedVote = { inc_votes: voteChange }
+  return axios
+    .patch(`https://thecodefox-nc-knews.herokuapp.com/api/${dataType}/${id}`, changedVote)
+};

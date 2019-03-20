@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { formatDateTime, voteHeart, votingButtons } from '../utils/app-utils';
+import { formatDateTime, voteHeart, votingButtons, patchVote } from '../utils/app-utils';
 
 class ArticleComment extends Component {
   state = {
@@ -26,6 +26,7 @@ class ArticleComment extends Component {
     this.setState(prevState => ({
       voteChange: prevState.voteChange + voteChange
     }))
+    patchVote(voteChange, 'comments', this.props.comment.comment_id)
   }
 
 };
