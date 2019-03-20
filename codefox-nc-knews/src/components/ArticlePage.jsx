@@ -7,7 +7,8 @@ import { deleteComment } from '../utils/users';
 class ArticlePage extends Component {
   state = {
     article: [],
-    comments: []
+    comments: [],
+    voteChange: 0
   }
 
   componentDidMount = () => {
@@ -25,7 +26,7 @@ class ArticlePage extends Component {
 
   render() {
     const { removeArticle } = this.props;
-    const { article, comments } = this.state;
+    const { article, comments, voteChange } = this.state;
     const formattedTime = (article.created_at) && formatDateTime(article.created_at)
     return (
       <main>
@@ -33,9 +34,13 @@ class ArticlePage extends Component {
         <h3>Title: {article.title}</h3>
         <h4>Author: {article.author}</h4>
         <h4>{formattedTime}</h4>
-        <h4>{voteHeart(article.votes)} {article.votes}</h4>
+        <h4>{voteHeart(article.votes)} {article.votes + voteChange}</h4>
         <p>{article.body}</p>
+        <p>Tell us what you thought about the article:
+          <button className="vote" onClick={() => this.handleVote(1)} disabled={voteChange === 1}>{voteHeart(0)}</button> <button className="vote" onClick={() => this.handleVote(-1)} disabled={voteChange === -1}>{voteHeart(-1)}</button>
+        </p>
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
+        <br /><br />
         <h3>Comments {article.comment_count}</h3>
         <button>ADD</button>
         <ul>{comments.map(comment => {
@@ -47,6 +52,12 @@ class ArticlePage extends Component {
         })}</ul>
       </main>
     )
+  }
+
+  handleVote = (voteChange) => {
+    this.setState(prevState => ({
+      voteChange: prevState.voteChange + voteChange
+    }))
   }
 
   removeComment = (comment_id) => {

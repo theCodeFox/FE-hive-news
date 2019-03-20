@@ -105,6 +105,10 @@ img {
     border-radius: 50%;
     margin: 0 0.5em;
 }
+.vote {
+    background: none;
+    border: none;
+}
 
 .users-comments-grid {
     width: 100%;
