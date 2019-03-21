@@ -9,6 +9,7 @@ import {
   deleteArticle,
   fetchTotalArticles,
   postTopic,
+  postUser,
 } from './utils/app-utils';
 import ArticlePage from './components/ArticlePage';
 
@@ -62,7 +63,13 @@ class App extends Component {
             filterArticles={this.filterArticles}
             addTopic={this.addTopic}
           />
-          <Users path="/users" users={users} articles={articles}  removeArticle={this.removeArticle}/>
+          <Users
+            path="/users"
+            users={users}
+            articles={articles}
+            removeArticle={this.removeArticle}
+            addUser={this.addUser}
+          />
           <ArticlePage
             path="/articles/:article_id"
             removeArticle={this.removeArticle}
@@ -109,6 +116,16 @@ class App extends Component {
         this.setState(prevState => {
           const formattedTopics = [newTopic, ...prevState.topics];
           return { topics: formattedTopics }
+        })
+      })
+  }
+
+  addUser = (newUsername, newAvatarURL, newName) => {
+    postUser(newUsername, newAvatarURL, newName)
+      .then(newUser => {
+        this.setState(prevState => {
+          const formattedUsers = [newUser, ...prevState.users];
+          return { users: formattedUsers }
         })
       })
   }

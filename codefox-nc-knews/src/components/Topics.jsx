@@ -13,7 +13,8 @@ class Topics extends Component {
     const { addClicked, slug, description } = this.state;
     return <main className="topic-article-grid">
       <div className="topic-article-changeTopic">
-        {addClicked ? <form action="post" onSubmit={this.handleTopicSubmit}>
+        {addClicked
+          ? <form action="post" onSubmit={this.handleTopicSubmit}>
           <label htmlFor="slug">Topic Slug:</label>
           <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required/>
           <br />
@@ -21,10 +22,10 @@ class Topics extends Component {
           <input type="text" id="description" onChange={this.handleTopicChange} value={description} required/>
           <button>SUBMIT</button>
         </form>
-        : <p>There are {topics.length} topics in total <button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
+        : <p>There are {topics.length} topics <button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
       </div>
       <div className="topic-article-changeArticle">
-        <p>There are {total_articles} articles in total <button>ADD</button></p>
+        <p>There are {total_articles} articles <button>ADD</button></p>
         <p>sort</p>
       </div>
       <ul className="topic-article-topics">{topics.map(topic => {
@@ -51,8 +52,8 @@ class Topics extends Component {
   }
 
   handleTopicSubmit = (event) => {
-    const { slug, description } = this.state
     event.preventDefault();
+    const { slug, description } = this.state
     this.props.addTopic(slug, description);
     this.setState({
       addClicked: false,
