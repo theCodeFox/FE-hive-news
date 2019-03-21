@@ -1,26 +1,27 @@
 import axios from 'axios';
+axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
 
 export const getUserByUsername = (username) => {
   return axios
-    .get(`https://thecodefox-nc-knews.herokuapp.com/api/users/${username}`)
+    .get(`/users/${username}`)
     .then(({ data }) => {
-        return data.user
+      return data.user
     })
 };
 
 export const getRelatedUserArticles = (articles, username) => {
-    return articles.filter(article => article.author === username)
+  return articles.filter(article => article.author === username)
 };
 
 export const getRelatedUserComments = (username) => {
-    return axios
-      .get(`https://thecodefox-nc-knews.herokuapp.com/api/users/${username}/comments`)
-      .then(({ data }) => {
-          return data.comments
-      })
+  return axios
+    .get(`/users/${username}/comments`)
+    .then(({ data }) => {
+      return data.comments
+    })
 };
 
 export const deleteComment = (id) => {
-    return axios
-      .delete(`https://thecodefox-nc-knews.herokuapp.com/api/comments/${id}`)
-  }
+  return axios
+    .delete(`/comments/${id}`)
+}

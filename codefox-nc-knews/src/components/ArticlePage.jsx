@@ -7,6 +7,7 @@ import {
   votingButtons,
   patchVote,
   postComment,
+  fetchFilteredComments,
 } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
@@ -26,10 +27,10 @@ class ArticlePage extends Component {
     const comments = fetchCommentsByArticleID(id);
     return Promise.all([article, comments])
       .then(([article, comments]) => {
-          return this.setState({
-            article: article.data.article,
-            comments: comments.data.comments
-          })
+        return this.setState({
+          article: article.data.article,
+          comments: comments.data.comments
+        })
       })
   }
 
@@ -50,14 +51,26 @@ class ArticlePage extends Component {
         </p>
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
         <br /><br />
-        <h3>Comments - {comments.length}</h3>
+        <h3>Comments</h3>
         {addClicked
           ? <form action="post" onSubmit={this.handleCommentSubmit}>
-          <label htmlFor="comment=body">Comment Body:</label>
-          <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
-          <button>SUBMIT</button>
+            <label htmlFor="comment=body">Comment Body:</label>
+            <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
+            <button>SUBMIT</button>
           </form>
-          : <button onClick={this.toggleAdd}>ADD</button>}
+          : <div><button onClick={this.toggleAdd}>ADD</button>
+            <label htmlFor="comment=body">Comment Body:</label>
+            <select onChange={(event) => {
+              this.sortComments('sort_by', event.target.value)
+            }}>
+              <option value="created_at-desc">Newest</option>
+              <option value="created_at-asc">Oldest</option>
+              <option value="votes-desc">Most Loved</option>
+              <option value="votes-asc">Most Hated</option>
+              <option value="author-asc">Author (a-z)</option>
+              <option value="author-desc">Author (z-a)</option>
+            </select>
+          </div>}
         <ul>{comments.map(comment => {
           return <ArticleComment
             key={comment.comment_id}
@@ -67,6 +80,20 @@ class ArticlePage extends Component {
         })}</ul>
       </main>
     )
+  }
+
+  sortComments = (commentDataKey, sortData) => {
+    const sortOrders = sortData.split('-')
+    const query = {
+      [commentDataKey]: sortOrders[0],
+      order: sortOrders[1]
+    };
+    console.log(query)
+    const id = this.state.article.article_id;
+    fetchFilteredComments(id, query)
+      .then(newComments => {
+        this.setState({ comments: newComments })
+      })
   }
 
   addComment = (body) => {
@@ -117,7 +144,7 @@ class ArticlePage extends Component {
         this.setState({
           comments: newComments
         })
-    })
+      })
   }
 };
 

@@ -4,13 +4,12 @@ class ArticleChange extends Component {
   state = {
     addClicked: false,
     title: '',
-    topic: '',
+    topic: 'coding',
     body: '',
   }
   render() {
     const { total_articles, topics } = this.props;
     const { addClicked, title, topic, body } = this.state;
-    console.log(topics)
     return <div className="topic-article-changeArticle">
       {addClicked
         ? <form action="post" onSubmit={this.handleArticleSubmit}>
@@ -41,7 +40,7 @@ class ArticleChange extends Component {
     this.setState({
       addClicked: false,
       title: '',
-      topic: '',
+      topic: 'coding',
       body: '',
     })
   }

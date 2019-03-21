@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React from 'react';
+axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
 
 export const fetchData = (endpoint) => {
   return axios
-    .get(`https://thecodefox-nc-knews.herokuapp.com/api/${endpoint}`)
+    .get(`/${endpoint}`)
     .then(({ data }) => {
       return data[endpoint]
     })
@@ -11,7 +12,7 @@ export const fetchData = (endpoint) => {
 
 export const fetchTotalArticles = () => {
   return axios
-    .get('https://thecodefox-nc-knews.herokuapp.com/api/articles')
+    .get('/articles')
     .then(({ data }) => {
       return data.total_articles
     })
@@ -19,7 +20,7 @@ export const fetchTotalArticles = () => {
 
 export const deleteArticle = (id) => {
   return axios
-    .delete(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}`)
+    .delete(`/articles/${id}`)
 }
 
 export const formatDateTime = (dateTime) => {
@@ -30,12 +31,12 @@ export const formatDateTime = (dateTime) => {
 
 export const fetchArticleByID = (id) => {
   return axios
-    .get(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}`)
+    .get(`/articles/${id}`)
 }
 
 export const fetchCommentsByArticleID = (id) => {
   return axios
-    .get(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`)
+    .get(`/articles/${id}/comments`)
 }
 
 export const voteHeart = (votes) => {
@@ -51,27 +52,27 @@ export const votingButtons = (voteChange, handleVote) => {
 export const patchVote = (voteChange, dataType, id) => {
   const changedVote = { inc_votes: voteChange };
   return axios
-    .patch(`https://thecodefox-nc-knews.herokuapp.com/api/${dataType}/${id}`, changedVote)
+    .patch(`/${dataType}/${id}`, changedVote)
 };
 
 export const postTopic = (slug, description) => {
   const newTopic = { slug, description };
   return axios
-    .post('https://thecodefox-nc-knews.herokuapp.com/api/topics', newTopic)
+    .post('/topics', newTopic)
     .then(({ data }) => data.topic)
 }
 
 export const postUser = (username, avatar_url, name) => {
   const newUser = { username, avatar_url, name };
   return axios
-    .post('https://thecodefox-nc-knews.herokuapp.com/api/users', newUser)
+    .post('/users', newUser)
     .then(({ data }) => data.user)
 }
 
 export const postComment = (id, author, body) => {
   const newComment = { author, body };
   return axios
-    .post(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`, newComment)
+    .post(`/articles/${id}/comments`, newComment)
     .then(({ data }) => data.comment)
 }
 
@@ -79,14 +80,22 @@ export const postArticle = (author, title, topic, body) => {
   const newArticle = { author, title, topic, body };
   console.log(newArticle)
   return axios
-    .post('https://thecodefox-nc-knews.herokuapp.com/api/articles', newArticle)
+    .post('/articles', newArticle)
     .then(({ data }) => data.article)
 }
 
 export const fetchFilteredArticles = (query) => {
   return axios
-    .get('https://thecodefox-nc-knews.herokuapp.com/api/articles', { params: query })
+    .get('/articles', { params: query })
     .then(({ data }) => {
       return data.articles
+    })
+};
+
+export const fetchFilteredComments = (id, query) => {
+  return axios
+    .get(`/articles/${id}/comments`, { params: query })
+    .then(({ data }) => {
+      return data.comments
     })
 };
