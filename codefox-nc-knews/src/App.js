@@ -48,6 +48,8 @@ class App extends Component {
     }
   }
 
+
+
   render() {
     const { user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
@@ -85,12 +87,14 @@ class App extends Component {
             removeArticle={this.removeArticle}
             user={user}
           />
-          {/* <Login
+          <Login
             path="/login"
             user={user}
             userAvatar={userAvatar}
             addUser={this.addUser}
-          /> */}
+            changeUser={this.changeUser}
+            logOut={this.logOut}
+          />
           <NotFound path="/not-found" default />
         </Router>
         <nav className="nav">
@@ -98,6 +102,14 @@ class App extends Component {
         </nav>
       </div>
     );
+  }
+
+  logOut = () => {
+    this.setState({ user: "Anonymous", userAvatar: 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg', })
+  }
+
+  changeUser = (user, userAvatar) => {
+    this.setState({ user, userAvatar })
   }
 
   changeArticlePage = (pageChange) => {
