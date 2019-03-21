@@ -25,8 +25,27 @@ class ArticleChange extends Component {
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
           <button>SUBMIT</button>
         </form>
-        : <p>There are {total_articles} articles in total<button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
+        : <p>There are {total_articles} articles in total<button onClick={this.toggleAdd}>ADD</button><br /><label htmlFor="comment-sort">Sort Comments:</label>
+          <select id="comment-sort" onChange={(event) => {
+            this.sortArticles('sort_by', event.target.value)
+          }}>
+            <option value="created_at-desc">Newest</option>
+            <option value="created_at-asc">Oldest</option>
+            <option value="votes-desc">Most Loved</option>
+            <option value="votes-asc">Most Hated</option>
+            <option value="author-asc">Author (a-z)</option>
+            <option value="author-desc">Author (z-a)</option>
+          </select></p>}
     </div>
+  }
+
+  sortArticles = (articleDataKey, sortData) => {
+    const sortOrders = sortData.split('-');
+    const query = {
+      [articleDataKey]: sortOrders[0],
+      order: sortOrders[1]
+    };
+    this.props.filterArticles(query)
   }
 
   handleArticleChange = (articleDataKey, newArticleData) => {

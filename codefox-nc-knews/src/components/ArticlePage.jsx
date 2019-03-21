@@ -54,13 +54,13 @@ class ArticlePage extends Component {
         <h3>Comments</h3>
         {addClicked
           ? <form action="post" onSubmit={this.handleCommentSubmit}>
-            <label htmlFor="comment=body">Comment Body:</label>
+            <label htmlFor="comment-body">Comment Body:</label>
             <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
             <button>SUBMIT</button>
           </form>
           : <div><button onClick={this.toggleAdd}>ADD</button>
-            <label htmlFor="comment=body">Comment Body:</label>
-            <select onChange={(event) => {
+            <label htmlFor="comment-sort">Sort Comments:</label>
+            <select id="comment-sort" onChange={(event) => {
               this.sortComments('sort_by', event.target.value)
             }}>
               <option value="created_at-desc">Newest</option>
@@ -83,12 +83,11 @@ class ArticlePage extends Component {
   }
 
   sortComments = (commentDataKey, sortData) => {
-    const sortOrders = sortData.split('-')
+    const sortOrders = sortData.split('-');
     const query = {
       [commentDataKey]: sortOrders[0],
       order: sortOrders[1]
     };
-    console.log(query)
     const id = this.state.article.article_id;
     fetchFilteredComments(id, query)
       .then(newComments => {

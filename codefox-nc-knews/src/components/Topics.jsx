@@ -6,21 +6,29 @@ import ArticleChange from './ArticleChange';
 
 const Topics = ({ topics, articles, filterArticles, total_articles, addTopic, addArticle }) => {
   return <main className="topic-article-grid">
-      <TopicChange topics={topics} addTopic={addTopic} />
-      <ArticleChange total_articles={total_articles} addArticle={addArticle} topics={topics} />
-      <ul className="topic-article-topics">{topics.map(topic => {
-        return <Topic
-          key={topic.slug}
-          topic={topic}
-          filterArticles={filterArticles}
-        />
-      })}</ul>
-      <ul className="topic-article-articles">{articles.map(article => {
-        return <Article
-          key={article.article_id}
-          article={article}
-        />
-      })}</ul>
+    <TopicChange
+      topics={topics}
+      addTopic={addTopic}
+    />
+    <ArticleChange
+      total_articles={total_articles}
+      addArticle={addArticle}
+      topics={topics}
+      filterArticles={filterArticles}
+    />
+    <ul className="topic-article-topics">{topics.map(topic => {
+      return <Topic
+        key={topic.slug}
+        topic={topic}
+        filterArticles={filterArticles}
+      />
+    })}</ul>
+    <ul className="topic-article-articles">{articles.map(article => {
+      return <Article
+        key={article.article_id}
+        article={article}
+      />
+    })}</ul>
   </main>
 }
 
