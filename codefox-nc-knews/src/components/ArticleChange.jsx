@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+
+class ArticleChange extends Component {
+  state = {
+    addClicked: false,
+    title: '',
+    topic: '',
+    body: '',
+  }
+  render() {
+    const { total_articles, topics } = this.props;
+    const { addClicked, title, topic, body } = this.state;
+    console.log(topics)
+    return <div className="topic-article-changeArticle">
+      {addClicked
+        ? <form action="post" onSubmit={this.handleArticleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input type="text" name="title" onChange={(event) => this.handleArticleChange('title', event.target.value)} value={title} required />
+        <br />
+        <select onChange={(event) => this.handleArticleChange('topic', event.target.value)}>
+          {topics.map(topic => <option value={topic.slug} key={topic.slug}>{topic.slug}</option>)}
+        </select>
+        <br />
+        <label htmlFor="body">Body:</label>
+        <input type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
+        <button>SUBMIT</button>
+        </form>
+        : <p>There are {total_articles} articles in total<button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
+    </div>
+  }
+
+  handleArticleChange = (articleDataKey, newArticleData) => {
+    // event.persist()
+    // const newArticleData = event.target.value;
+    // const articleDataKey = event.target.id;
+    this.setState({ [articleDataKey]: newArticleData })
+  }
+
+  handleArticleSubmit = (event) => {
+    event.preventDefault();
+    const { title, topic, body } = this.state
+    this.props.addArticle(title, topic, body);
+    this.setState({
+      addClicked: false,
+      title: '',
+      topic: '',
+      body: '',
+    })
+  }
+
+  toggleAdd = () => {
+    !this.state.addClicked && this.setState({ addClicked: true })
+  }
+  
+};
+
+export default ArticleChange;

@@ -5,7 +5,7 @@ const Topic = ({ topic, filterArticles }) => {
     <h3>{topic.slug}</h3>
     <p>{topic.description}</p>
     <button className="view" onClick={() => {
-      filterArticles(topic.slug)
+      filterArticles({ topic: topic.slug })
     }}>FILTER</button>
     </li>
 }

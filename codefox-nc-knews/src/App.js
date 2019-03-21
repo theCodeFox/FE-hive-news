@@ -10,8 +10,11 @@ import {
   fetchTotalArticles,
   postTopic,
   postUser,
+  fetchFilteredArticles,
+  postArticle,
 } from './utils/app-utils';
 import ArticlePage from './components/ArticlePage';
+import NotFound from './components/NotFound';
 
 class App extends Component {
   state = {
@@ -62,6 +65,7 @@ class App extends Component {
             total_articles={total_articles}
             filterArticles={this.filterArticles}
             addTopic={this.addTopic}
+            addArticle={this.addArticle}
           />
           <Users
             path="/users"
@@ -75,6 +79,7 @@ class App extends Component {
             removeArticle={this.removeArticle}
             user={user}
           />
+          <NotFound path="/not-found" default />
         </Router>
         <nav className="nav">
           footer
@@ -101,14 +106,12 @@ class App extends Component {
       })
   }
 
-  filterArticles = (topic) => {
-    fetchData('articles')
-      .then(articles => {
-        const filteredArticles = articles.filter(article => article.topic === topic)
-        return this.setState({
+  filterArticles = (query) => {
+    fetchFilteredArticles(query)
+      .then(filteredArticles => this.setState({
           articles: filteredArticles
         })
-      })
+      )
   }
 
   addTopic = (newSlug, newDescription) => {
@@ -117,6 +120,17 @@ class App extends Component {
         this.setState(prevState => {
           const formattedTopics = [newTopic, ...prevState.topics];
           return { topics: formattedTopics }
+        })
+      })
+  }
+
+  addArticle = (newTitle, newTopic, newBody) => {
+    const author = this.state.user
+    postArticle(author, newTitle, newTopic, newBody)
+      .then(newArticle => {
+        this.setState(prevState => {
+          const formattedArticles = [newArticle, ...prevState.topics];
+          return { topics: formattedArticles }
         })
       })
   }

@@ -74,3 +74,19 @@ export const postComment = (id, author, body) => {
     .post(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`, newComment)
     .then(({ data }) => data.comment)
 }
+
+export const postArticle = (author, title, topic, body) => {
+  const newArticle = { author, title, topic, body };
+  console.log(newArticle)
+  return axios
+    .post('https://thecodefox-nc-knews.herokuapp.com/api/articles', newArticle)
+    .then(({ data }) => data.article)
+}
+
+export const fetchFilteredArticles = (query) => {
+  return axios
+    .get('https://thecodefox-nc-knews.herokuapp.com/api/articles', { params: query })
+    .then(({ data }) => {
+      return data.articles
+    })
+};
