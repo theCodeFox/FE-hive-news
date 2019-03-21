@@ -21,7 +21,7 @@ class Topics extends Component {
           <label htmlFor="description">Description:</label>
           <input type="text" id="description" onChange={this.handleTopicChange} value={description} required/>
           <button>SUBMIT</button>
-        </form>
+          </form>
         : <p>There are {topics.length} topics <button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
       </div>
       <div className="topic-article-changeArticle">

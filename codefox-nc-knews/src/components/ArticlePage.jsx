@@ -6,15 +6,18 @@ import {
   fetchCommentsByArticleID,
   votingButtons,
   patchVote,
+  postComment,
 } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
 
 class ArticlePage extends Component {
   state = {
-    article: [],
+    article: {},
     comments: [],
-    voteChange: 0
+    voteChange: 0,
+    body: '',
+    addClicked: false,
   }
 
   componentDidMount = () => {
@@ -32,7 +35,7 @@ class ArticlePage extends Component {
 
   render() {
     const { removeArticle } = this.props;
-    const { article, comments, voteChange } = this.state;
+    const { article, comments, voteChange, body, addClicked } = this.state;
     const formattedTime = (article.created_at) && formatDateTime(article.created_at)
     return (
       <main>
@@ -48,7 +51,13 @@ class ArticlePage extends Component {
         <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
         <br /><br />
         <h3>Comments - {article.comment_count}</h3>
-        <button>ADD</button>
+        {addClicked
+          ? <form action="post" onSubmit={this.handleCommentSubmit}>
+          <label htmlFor="comment=body">Comment Body:</label>
+          <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
+          <button>SUBMIT</button>
+          </form>
+          : <button>ADD</button>}
         <ul>{comments.map(comment => {
           return <ArticleComment
             key={comment.comment_id}
@@ -58,6 +67,35 @@ class ArticlePage extends Component {
         })}</ul>
       </main>
     )
+  }
+
+  addComment = (body) => {
+    const { article } = this.state;
+    const id = article.article_id;
+    const username = this.props.user;
+    postComment(id, username, body)
+      .then(newComment => {
+        this.setState(prevState => {
+          const formattedComments = [newComment, ...prevState.comments];
+          return { comments: formattedComments }
+        })
+      })
+  }
+
+  handleCommentChange = (event) => {
+    event.persist();
+    const newCommentData = event.target.value;
+    this.setState({ body: newCommentData })
+  }
+
+  handleCommentSubmit = (event) => {
+    event.preventDefault();
+    const { body } = this.state;
+    this.addComment(body);
+    this.setState({
+      addClicked: false,
+      body: '',
+    })
   }
 
   handleVote = (voteChange) => {

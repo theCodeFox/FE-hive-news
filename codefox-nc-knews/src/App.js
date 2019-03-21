@@ -15,7 +15,7 @@ import ArticlePage from './components/ArticlePage';
 
 class App extends Component {
   state = {
-    user: "",
+    user: "mrTiddles",
     users: [],
     topics: [],
     articles: [],
@@ -73,6 +73,7 @@ class App extends Component {
           <ArticlePage
             path="/articles/:article_id"
             removeArticle={this.removeArticle}
+            user={user}
           />
         </Router>
         <nav className="nav">

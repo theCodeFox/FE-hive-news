@@ -49,21 +49,28 @@ export const votingButtons = (voteChange, handleVote) => {
 }
 
 export const patchVote = (voteChange, dataType, id) => {
-  const changedVote = { inc_votes: voteChange }
+  const changedVote = { inc_votes: voteChange };
   return axios
     .patch(`https://thecodefox-nc-knews.herokuapp.com/api/${dataType}/${id}`, changedVote)
 };
 
 export const postTopic = (slug, description) => {
-  const newTopic = { slug, description }
+  const newTopic = { slug, description };
   return axios
     .post('https://thecodefox-nc-knews.herokuapp.com/api/topics', newTopic)
     .then(({ data }) => data.topic)
 }
 
 export const postUser = (username, avatar_url, name) => {
-  const newUser = { username, avatar_url, name }
+  const newUser = { username, avatar_url, name };
   return axios
     .post('https://thecodefox-nc-knews.herokuapp.com/api/users', newUser)
     .then(({ data }) => data.user)
+}
+
+export const postComment = (id, username, body) => {
+  const newComment = { username, body };
+  return axios
+    .post(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`, newComment)
+    .then(({ data }) => data.comment)
 }
