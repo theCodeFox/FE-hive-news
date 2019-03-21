@@ -57,7 +57,7 @@ class ArticlePage extends Component {
           <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
           <button>SUBMIT</button>
           </form>
-          : <button>ADD</button>}
+          : <button onClick={this.toggleAdd}>ADD</button>}
         <ul>{comments.map(comment => {
           return <ArticleComment
             key={comment.comment_id}
@@ -80,6 +80,10 @@ class ArticlePage extends Component {
           return { comments: formattedComments }
         })
       })
+  }
+
+  toggleAdd = () => {
+    !this.state.addClicked && this.setState({ addClicked: true })
   }
 
   handleCommentChange = (event) => {

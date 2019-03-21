@@ -68,8 +68,8 @@ export const postUser = (username, avatar_url, name) => {
     .then(({ data }) => data.user)
 }
 
-export const postComment = (id, username, body) => {
-  const newComment = { username, body };
+export const postComment = (id, author, body) => {
+  const newComment = { author, body };
   return axios
     .post(`https://thecodefox-nc-knews.herokuapp.com/api/articles/${id}/comments`, newComment)
     .then(({ data }) => data.comment)
