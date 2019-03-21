@@ -53,3 +53,10 @@ export const patchVote = (voteChange, dataType, id) => {
   return axios
     .patch(`https://thecodefox-nc-knews.herokuapp.com/api/${dataType}/${id}`, changedVote)
 };
+
+export const postTopic = (slug, description) => {
+  const newTopic = { slug, description }
+  return axios
+    .post('https://thecodefox-nc-knews.herokuapp.com/api/topics', newTopic)
+    .then(({ data }) => data.topic)
+}

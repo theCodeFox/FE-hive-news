@@ -4,7 +4,12 @@ import './App.css';
 import Home from './components/Home';
 import Topics from './components/Topics';
 import Users from './components/Users';
-import { fetchData, deleteArticle, fetchTotalArticles } from './utils/app-utils';
+import {
+  fetchData,
+  deleteArticle,
+  fetchTotalArticles,
+  postTopic,
+} from './utils/app-utils';
 import ArticlePage from './components/ArticlePage';
 
 class App extends Component {
@@ -55,6 +60,7 @@ class App extends Component {
             articles={articles}
             total_articles={total_articles}
             filterArticles={this.filterArticles}
+            addTopic={this.addTopic}
           />
           <Users path="/users" users={users} articles={articles}  removeArticle={this.removeArticle}/>
           <ArticlePage
@@ -93,6 +99,16 @@ class App extends Component {
         const filteredArticles = articles.filter(article => article.topic === topic)
         return this.setState({
           articles: filteredArticles
+        })
+      })
+  }
+
+  addTopic = (newSlug, newDescription) => {
+    postTopic(newSlug, newDescription)
+      .then(newTopic => {
+        this.setState(prevState => {
+          const formattedTopics = [newTopic, ...prevState.topics];
+          return { topics: formattedTopics }
         })
       })
   }

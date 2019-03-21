@@ -12,12 +12,15 @@ class Users extends Component {
   state = {
     selectedUser: '',
     relatedArticles: [],
-    relatedComments: []
+    relatedComments: [],
+    username: '',
+    avatar_url: '',
+    name: '',
   }
   
   render() {
     const { users, removeArticle } = this.props;
-    const { selectedUser, relatedArticles, relatedComments } = this.state;
+    const { selectedUser, relatedArticles, relatedComments, username, avatar_url, name } = this.state;
     return <main className="users-comments-grid">
       <p className="users-comments-search">search user</p>
       <div className="users-comments-info">

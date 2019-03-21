@@ -4,23 +4,24 @@ import Article from './Article';
 
 class Topics extends Component {
   state = {
-    addClicked: false
+    addClicked: false,
+    slug: '',
+    description: '',
   }
   render() {
     const { topics, articles, filterArticles, total_articles } = this.props;
-    const { addClicked } = this.state;
+    const { addClicked, slug, description } = this.state;
     return <main className="topic-article-grid">
       <div className="topic-article-changeTopic">
-        <p>There are {topics.length} topics in total <button onClick={() => this.toggleAdd()}>ADD</button></p>
-        {addClicked && <form action="post">
+        {addClicked ? <form action="post" onSubmit={this.handleTopicSubmit}>
           <label htmlFor="slug">Topic Slug:</label>
-          <input type="text" id="slug" required/>
+          <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required/>
           <br />
           <label htmlFor="description">Description:</label>
-          <input type="text" id="description" required/>
+          <input type="text" id="description" onChange={this.handleTopicChange} value={description} required/>
           <button>SUBMIT</button>
-        </form>}
-        <p>sort</p>
+        </form>
+        : <p>There are {topics.length} topics in total <button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
       </div>
       <div className="topic-article-changeArticle">
         <p>There are {total_articles} articles in total <button>ADD</button></p>
@@ -40,6 +41,24 @@ class Topics extends Component {
         />
       })}</ul>
     </main>
+  }
+
+  handleTopicChange = (event) => {
+    event.persist()
+    const newTopicData = event.target.value;
+    const topicDataKey = event.target.id;
+    this.setState({ [topicDataKey]: newTopicData })
+  }
+
+  handleTopicSubmit = (event) => {
+    const { slug, description } = this.state
+    event.preventDefault();
+    this.props.addTopic(slug, description);
+    this.setState({
+      addClicked: false,
+      slug: '',
+      description: ''
+    })
   }
 
   toggleAdd = () => {
