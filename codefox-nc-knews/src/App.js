@@ -24,7 +24,7 @@ class App extends Component {
     articles: [],
     total_articles: 0,
   }
-  
+
   componentDidMount = () => {
     this.fetchAllData()
       .then(([users, topics, articles, totalArticles]) => {
@@ -33,8 +33,8 @@ class App extends Component {
           topics,
           articles,
           total_articles: totalArticles
+        })
       })
-    })
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -95,7 +95,7 @@ class App extends Component {
     const totalArticles = fetchTotalArticles();
     return Promise.all([users, topics, articles, totalArticles])
   }
-  
+
   removeArticle = (article_id) => {
     const newArticles = this.state.articles.filter(article => article.article_id !== article_id)
     deleteArticle(article_id)
@@ -109,8 +109,8 @@ class App extends Component {
   filterArticles = (query) => {
     fetchFilteredArticles(query)
       .then(filteredArticles => this.setState({
-          articles: filteredArticles
-        })
+        articles: filteredArticles
+      })
       )
   }
 
@@ -129,8 +129,8 @@ class App extends Component {
     postArticle(author, newTitle, newTopic, newBody)
       .then(newArticle => {
         this.setState(prevState => {
-          const formattedArticles = [newArticle, ...prevState.topics];
-          return { topics: formattedArticles }
+          const formattedArticles = [newArticle, ...prevState.articles];
+          return { articles: formattedArticles }
         })
       })
   }
