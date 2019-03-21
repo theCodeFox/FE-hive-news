@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from '@reach/router';
 import {
   fetchArticleByID,
   voteHeart,
@@ -57,7 +58,10 @@ class ArticlePage extends Component {
         <p>Tell us what you thought about the article:
           {votingButtons(voteChange, this.handleVote)}
         </p>
-        <button className="delete" onClick={() => removeArticle(article.article_id)}>DELETE</button>
+        <button className="delete" onClick={() => {
+          removeArticle(article.article_id)
+          navigate('/topics', { state: { msg: 'article deleted' } })
+        }}>DELETE</button>
         <br /><br />
         <h3>Comments</h3>
         {addClicked

@@ -15,11 +15,14 @@ import {
 } from './utils/app-utils';
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
+import Login from './components/Login';
 
 class App extends Component {
   state = {
-    user: "mrTiddles",
+    adminUsers: ['grumpy19', 'jessjelly'],
+    user: "Anonymous",
     users: [],
+    userAvatar: 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
     topics: [],
     articles: [],
     total_articles: 0,
@@ -46,16 +49,16 @@ class App extends Component {
   }
 
   render() {
-    const { user, users, topics, articles, total_articles, p } = this.state;
+    const { user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
         <nav className="nav">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/topics" className="nav-link">Topics</Link>
           <Link to="/users" className="nav-link">Users</Link>
-          {/* <Link to="/login" className="nav-link"> */}
-          {user || `Anonymous User`}
-          {/* </Link> */}
+          <Link to="/login" className="nav-link">
+            {user || `Anonymous`}<img src={userAvatar} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
+          </Link>
         </nav>
         <Router className="main">
           <Home path="/" />
@@ -82,6 +85,12 @@ class App extends Component {
             removeArticle={this.removeArticle}
             user={user}
           />
+          {/* <Login
+            path="/login"
+            user={user}
+            userAvatar={userAvatar}
+            addUser={this.addUser}
+          /> */}
           <NotFound path="/not-found" default />
         </Router>
         <nav className="nav">
