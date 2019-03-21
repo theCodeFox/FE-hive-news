@@ -23,6 +23,7 @@ class App extends Component {
     topics: [],
     articles: [],
     total_articles: 0,
+    p: 1,
   }
 
   componentDidMount = () => {
@@ -45,7 +46,7 @@ class App extends Component {
   }
 
   render() {
-    const { user, users, topics, articles, total_articles } = this.state;
+    const { user, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
         <nav className="nav">
@@ -66,6 +67,8 @@ class App extends Component {
             filterArticles={this.filterArticles}
             addTopic={this.addTopic}
             addArticle={this.addArticle}
+            changeArticlePage={this.changeArticlePage}
+            p={p}
           />
           <Users
             path="/users"
@@ -88,10 +91,26 @@ class App extends Component {
     );
   }
 
+  changeArticlePage = (pageChange) => {
+    const { p, total_articles } = this.state;
+    const maxPage = Math.ceil(total_articles / 10);
+    let newPage = p + pageChange;
+    if (newPage > maxPage) newPage = 1;
+    if (newPage === 0) newPage = maxPage;
+    fetchData('articles', newPage)
+      .then(articles => {
+        return this.setState({
+          articles,
+          p: newPage,
+        })
+      })
+  }
+
   fetchAllData = () => {
+    const page = this.state.p;
     const users = fetchData('users');
     const topics = fetchData('topics');
-    const articles = fetchData('articles');
+    const articles = fetchData('articles', page);
     const totalArticles = fetchTotalArticles();
     return Promise.all([users, topics, articles, totalArticles])
   }

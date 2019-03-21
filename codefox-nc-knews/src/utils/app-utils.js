@@ -2,9 +2,9 @@ import axios from 'axios';
 import React from 'react';
 axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
 
-export const fetchData = (endpoint) => {
+export const fetchData = (endpoint, page) => {
   return axios
-    .get(`/${endpoint}`)
+    .get(`/${endpoint}`, { params: { p: page } })
     .then(({ data }) => {
       return data[endpoint]
     })

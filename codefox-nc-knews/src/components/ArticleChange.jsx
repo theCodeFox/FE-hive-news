@@ -8,7 +8,7 @@ class ArticleChange extends Component {
     body: '',
   }
   render() {
-    const { total_articles, topics } = this.props;
+    const { total_articles, topics, changeArticlePage, p } = this.props;
     const { addClicked, title, topic, body } = this.state;
     return <div className="topic-article-changeArticle">
       {addClicked
@@ -35,7 +35,12 @@ class ArticleChange extends Component {
             <option value="votes-asc">Most Hated</option>
             <option value="author-asc">Author (a-z)</option>
             <option value="author-desc">Author (z-a)</option>
-          </select></p>}
+          </select>
+          <br />
+          <button onClick={() => changeArticlePage(-1)}>BACK</button>
+          page {p}
+          <button onClick={() => changeArticlePage(1)}>NEXT</button>
+        </p>}
     </div>
   }
 
