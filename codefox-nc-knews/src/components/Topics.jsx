@@ -4,7 +4,16 @@ import Article from './Article';
 import TopicChange from './TopicChange';
 import ArticleChange from './ArticleChange';
 
-const Topics = ({ topics, articles, filterArticles, total_articles, addTopic, addArticle }) => {
+const Topics = ({
+  topics,
+  articles,
+  filterArticles,
+  total_articles,
+  addTopic,
+  addArticle,
+  changeArticlePage,
+  p
+}) => {
   return <main className="topic-article-grid">
     <TopicChange
       topics={topics}
@@ -15,14 +24,17 @@ const Topics = ({ topics, articles, filterArticles, total_articles, addTopic, ad
       addArticle={addArticle}
       topics={topics}
       filterArticles={filterArticles}
+      changeArticlePage={changeArticlePage}
+      p={p}
     />
-    <ul className="topic-article-topics">{topics.map(topic => {
-      return <Topic
-        key={topic.slug}
-        topic={topic}
-        filterArticles={filterArticles}
-      />
-    })}</ul>
+    <ul className="topic-article-topics">
+      {topics.map(topic => {
+        return <Topic
+          key={topic.slug}
+          topic={topic}
+          filterArticles={filterArticles}
+        />
+      })}</ul>
     <ul className="topic-article-articles">{articles.map(article => {
       return <Article
         key={article.article_id}

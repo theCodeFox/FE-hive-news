@@ -19,6 +19,7 @@ class ArticlePage extends Component {
     voteChange: 0,
     body: '',
     addClicked: false,
+    p: 1,
   }
 
   componentDidMount = () => {
@@ -36,7 +37,14 @@ class ArticlePage extends Component {
 
   render() {
     const { removeArticle } = this.props;
-    const { article, comments, voteChange, body, addClicked } = this.state;
+    const {
+      article,
+      comments,
+      voteChange,
+      body,
+      addClicked,
+      p
+    } = this.state;
     const formattedTime = (article.created_at) && formatDateTime(article.created_at)
     return (
       <main>
@@ -70,6 +78,10 @@ class ArticlePage extends Component {
               <option value="author-asc">Author (a-z)</option>
               <option value="author-desc">Author (z-a)</option>
             </select>
+            <br />
+            <button onClick={() => this.changeCommentPage(-1)}>BACK</button>
+            page {p}
+            <button onClick={() => this.changeCommentPage(1)}>NEXT</button>
           </div>}
         <ul>{comments.map(comment => {
           return <ArticleComment
@@ -80,6 +92,23 @@ class ArticlePage extends Component {
         })}</ul>
       </main>
     )
+  }
+
+  changeCommentPage = (pageChange) => {
+    const { p, article } = this.state;
+    const maxPage = Math.ceil(article.comment_count / 10);
+    let newPage = p + pageChange;
+    if (newPage > maxPage) newPage = 1;
+    if (newPage === 0) newPage = maxPage;
+    const id = this.state.article.article_id;
+    const query = { p: newPage }
+    fetchFilteredComments(id, query)
+      .then(newComments => {
+        this.setState({
+          comments: newComments,
+          p: newPage,
+        })
+      })
   }
 
   sortComments = (commentDataKey, sortData) => {
