@@ -92,7 +92,7 @@ class Users extends Component {
   handleUserSubmit = (event) => {
     event.preventDefault();
     const { username, avatar_url, name } = this.state
-    this.props.addTopic(username, avatar_url, name);
+    this.props.addUser(username, avatar_url, name);
     this.setState({
       addClicked: false,
       username: '',
