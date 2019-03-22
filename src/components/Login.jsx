@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 
 class Login extends Component {
   state = {
+    loggedInUser: '',
     username: '',
     avatar_url: '',
     name: '',
     addClicked: false,
+    isInvalid: false,
   }
   render() {
-    const { user, userAvatar, addUser, logOut } = this.props;
-    const { username, avatar_url, name, addClicked } = this.state;
+    const { user, logOut } = this.props;
+    const {
+      username,
+      avatar_url,
+      name,
+      addClicked,
+      changedUser,
+      isInvalid,
+    } = this.state;
     return <main>
       <div className="users-comments-search">
         {addClicked
@@ -26,11 +35,41 @@ class Login extends Component {
           : <div>
             <h3>Hello {user}!</h3>
             <p>Not you? Then please type your username below or simply <button onClick={logOut}>LOGOUT</button></p>
+            <form action="post">
+              <label htmlFor="login">Login:</label>
+              <input type="text" id="login" value={changedUser} onChange={this.handleLoginChange} />
+              <button onClick={this.handleLoginSubmit}>SUBMIT</button>
+            </form>
             <p>Or if you don't have a username then why not join us. Then you can create your own articles as well as comment and vote!</p>
             <button onClick={this.toggleAdd}>JOIN</button>
+            {isInvalid && <p>Invalid Username, please try again</p>}
           </div>}
       </div>
     </main>
+  }
+
+  handleLoginChange = (event) => {
+    event.persist();
+    const newUser = event.target.value;
+    this.setState({ loggedInUser: newUser })
+  }
+
+  handleLoginSubmit = (event) => {
+    event.preventDefault();
+    const { loggedInUser } = this.state;
+    const userCheck = this.props.users.filter(user => user.username === loggedInUser)
+    console.log(userCheck, '<-- user check')
+    console.log(this.props.users, '<-- users')
+    if (userCheck.length === 0) this.setState({ isInvalid: true })
+    else {
+      console.log('hello')
+      const avatar_url = userCheck[0].avatar_url;
+      this.props.changeUser(loggedInUser, avatar_url);
+      this.setState({
+        loggedInUser: '',
+        isInvalid: false,
+      })
+    }
   }
 
   handleUserChange = (event) => {

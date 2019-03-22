@@ -90,7 +90,7 @@ class App extends Component {
           <Login
             path="/login"
             user={user}
-            userAvatar={userAvatar}
+            users={users}
             addUser={this.addUser}
             changeUser={this.changeUser}
             logOut={this.logOut}
