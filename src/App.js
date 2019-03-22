@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Router, Link } from '@reach/router'
+import { Router, Link } from '@reach/router';
+import ls from 'local-storage';
 import './App.css';
 import Home from './components/Home';
 import Topics from './components/Topics';
@@ -20,9 +21,9 @@ import Login from './components/Login';
 class App extends Component {
   state = {
     adminUsers: ['grumpy19', 'jessjelly'],
-    user: "Anonymous",
+    user: ls.get('user') || "Anonymous",
+    userAvatar: ls.get('userAvatar') || 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
     users: [],
-    userAvatar: 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
     topics: [],
     articles: [],
     total_articles: 0,
@@ -33,6 +34,8 @@ class App extends Component {
     this.fetchAllData()
       .then(([users, topics, articles, totalArticles]) => {
         return this.setState({
+          user: ls.get('user') || "Anonymous",
+          userAvatar: ls.get('userAvatar') || 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
           users,
           topics,
           articles,
@@ -105,11 +108,17 @@ class App extends Component {
   }
 
   logOut = () => {
-    this.setState({ user: "Anonymous", userAvatar: 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg', })
+    const user = "Anonymous";
+    const userAvatar = 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg';
+    this.setState({ user: user, userAvatar: userAvatar, })
+    ls.set('user', user);
+    ls.set('userAvatar', userAvatar)
   }
 
   changeUser = (user, userAvatar) => {
     this.setState({ user, userAvatar })
+    ls.set('user', user);
+    ls.set('userAvatar', userAvatar)
   }
 
   changeArticlePage = (pageChange) => {

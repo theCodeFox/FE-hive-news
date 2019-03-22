@@ -16,7 +16,7 @@ class Login extends Component {
       avatar_url,
       name,
       addClicked,
-      changedUser,
+      loggedInUser,
       isInvalid,
     } = this.state;
     return <main>
@@ -37,12 +37,12 @@ class Login extends Component {
             <p>Not you? Then please type your username below or simply <button onClick={logOut}>LOGOUT</button></p>
             <form action="post">
               <label htmlFor="login">Login:</label>
-              <input type="text" id="login" value={changedUser} onChange={this.handleLoginChange} />
+              <input type="text" id="login" value={loggedInUser} onChange={this.handleLoginChange} />
               <button onClick={this.handleLoginSubmit}>SUBMIT</button>
             </form>
+            {isInvalid && <p>Invalid Username, please try again</p>}
             <p>Or if you don't have a username then why not join us. Then you can create your own articles as well as comment and vote!</p>
             <button onClick={this.toggleAdd}>JOIN</button>
-            {isInvalid && <p>Invalid Username, please try again</p>}
           </div>}
       </div>
     </main>
@@ -58,8 +58,6 @@ class Login extends Component {
     event.preventDefault();
     const { loggedInUser } = this.state;
     const userCheck = this.props.users.filter(user => user.username === loggedInUser)
-    console.log(userCheck, '<-- user check')
-    console.log(this.props.users, '<-- users')
     if (userCheck.length === 0) this.setState({ isInvalid: true })
     else {
       console.log('hello')
