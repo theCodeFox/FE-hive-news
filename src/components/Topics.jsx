@@ -5,6 +5,7 @@ import TopicChange from './TopicChange';
 import ArticleChange from './ArticleChange';
 
 const Topics = ({
+  access,
   topics,
   articles,
   filterArticles,
@@ -12,14 +13,16 @@ const Topics = ({
   addTopic,
   addArticle,
   changeArticlePage,
-  p
+  p,
 }) => {
   return <main className="topic-article-grid">
     <TopicChange
+      access={access}
       topics={topics}
       addTopic={addTopic}
     />
     <ArticleChange
+      access={access}
       total_articles={total_articles}
       addArticle={addArticle}
       topics={topics}

@@ -8,7 +8,7 @@ class ArticleChange extends Component {
     body: '',
   }
   render() {
-    const { total_articles, topics, changeArticlePage, p } = this.props;
+    const { access, total_articles, topics, changeArticlePage, p } = this.props;
     const { addClicked, title, topic, body } = this.state;
     return <div className="topic-article-changeArticle">
       {addClicked
@@ -25,7 +25,7 @@ class ArticleChange extends Component {
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
           <button>SUBMIT</button>
         </form>
-        : <p>There are {total_articles} articles in total<button onClick={this.toggleAdd}>ADD</button><br /><label htmlFor="comment-sort">Sort Comments:</label>
+        : <p>There are {total_articles} articles in total {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
           <select id="comment-sort" onChange={(event) => {
             this.sortArticles('sort_by', event.target.value)
           }}>

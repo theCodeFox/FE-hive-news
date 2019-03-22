@@ -37,7 +37,7 @@ class ArticlePage extends Component {
   }
 
   render() {
-    const { removeArticle } = this.props;
+    const { access, user, removeArticle } = this.props;
     const {
       article,
       comments,
@@ -55,14 +55,15 @@ class ArticlePage extends Component {
         <h4>{formattedTime}</h4>
         <h4>{voteHeart(article.votes + voteChange)} {article.votes + voteChange}</h4>
         <p>{article.body}</p>
-        <p>Tell us what you thought about the article:
+        {(access === 'admin' || access === 'member') && <p>Tell us what you thought about the article:
           {votingButtons(voteChange, this.handleVote)}
-        </p>
-        <button className="delete" onClick={() => {
+        </p>}
+        {(access === 'admin' || user === article.author) && <button className="delete" onClick={() => {
           removeArticle(article.article_id)
           navigate('/topics', { state: { msg: 'article deleted' } })
-        }}>DELETE</button>
+        }}>DELETE</button>}
         <br /><br />
+
         <h3>Comments</h3>
         {addClicked
           ? <form action="post" onSubmit={this.handleCommentSubmit}>
@@ -70,7 +71,7 @@ class ArticlePage extends Component {
             <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
             <button>SUBMIT</button>
           </form>
-          : <div><button onClick={this.toggleAdd}>ADD</button>
+          : <div>{(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}
             <label htmlFor="comment-sort">Sort Comments:</label>
             <select id="comment-sort" onChange={(event) => {
               this.sortComments('sort_by', event.target.value)
@@ -90,6 +91,8 @@ class ArticlePage extends Component {
         <ul>{comments.map(comment => {
           return <ArticleComment
             key={comment.comment_id}
+            access={access}
+            user={user}
             comment={comment}
             removeComment={this.removeComment}
           />

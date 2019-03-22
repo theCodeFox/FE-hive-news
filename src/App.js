@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Link } from '@reach/router';
+import Img from 'react-image';
 import ls from 'local-storage';
 import './App.css';
 import Home from './components/Home';
@@ -17,6 +18,7 @@ import {
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
+import defaultAvatar from './images/nc-knews-default-avatar.png';
 
 class App extends Component {
   state = {
@@ -57,21 +59,22 @@ class App extends Component {
 
   render() {
     console.log(this.state.access)
-    const { user, userAvatar, users, topics, articles, total_articles, p } = this.state;
+    const { access, user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
         <nav className="nav">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/topics" className="nav-link">Topics</Link>
-          <Link to="/users" className="nav-link">Users</Link>
+          {(access === 'admin') && <Link to="/users" className="nav-link">Users</Link>}
           <Link to="/login" className="nav-link">
-            {user || `Anonymous`}<img src={userAvatar} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
+            {user || `Anonymous`}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
           </Link>
         </nav>
         <Router className="main">
           <Home path="/" />
           <Topics
             path="/topics"
+            access={access}
             topics={topics}
             articles={articles}
             total_articles={total_articles}
@@ -81,15 +84,16 @@ class App extends Component {
             changeArticlePage={this.changeArticlePage}
             p={p}
           />
-          <Users
+          {(access === 'admin') && <Users
             path="/users"
             users={users}
             articles={articles}
             removeArticle={this.removeArticle}
             addUser={this.addUser}
-          />
+          />}
           <ArticlePage
             path="/articles/:article_id"
+            access={access}
             removeArticle={this.removeArticle}
             user={user}
           />
@@ -120,7 +124,7 @@ class App extends Component {
   }
 
   changeUser = (user, userAvatar) => {
-    const { adminUsers, users } = this.state;
+    const { adminUsers } = this.state;
     const checkAdminAccess = adminUsers.filter(adminUser => adminUser === user);
     const userAccess = (checkAdminAccess.length === 1) ? 'admin' : ((user === 'Anonymous') ? 'none' : 'member');
     this.setState({ user, userAvatar, access: userAccess })

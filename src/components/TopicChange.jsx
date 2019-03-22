@@ -7,19 +7,19 @@ class TopicChange extends Component {
     description: '',
   }
   render() {
-    const { topics } = this.props;
+    const { topics, access } = this.props;
     const { addClicked, slug, description } = this.state;
     return <div className="topic-article-changeTopic">
       {addClicked
         ? <form action="post" onSubmit={this.handleTopicSubmit}>
-        <label htmlFor="slug">Topic Slug:</label>
-        <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required/>
-        <br />
-        <label htmlFor="description">Description:</label>
-        <input type="text" id="description" onChange={this.handleTopicChange} value={description} required/>
-        <button>SUBMIT</button>
+          <label htmlFor="slug">Topic Slug:</label>
+          <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required />
+          <br />
+          <label htmlFor="description">Description:</label>
+          <input type="text" id="description" onChange={this.handleTopicChange} value={description} required />
+          <button>SUBMIT</button>
         </form>
-        : <p>There are {topics.length} topics <button onClick={this.toggleAdd}>ADD</button><br />sort</p>}
+        : <p>There are {topics.length} topics {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /></p>}
     </div>
   }
 
@@ -44,7 +44,7 @@ class TopicChange extends Component {
   toggleAdd = () => {
     !this.state.addClicked && this.setState({ addClicked: true })
   }
-  
+
 };
 
 export default TopicChange;

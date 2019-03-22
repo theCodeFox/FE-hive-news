@@ -6,7 +6,7 @@ class ArticleComment extends Component {
     voteChange: 0,
   }
   render() {
-    const { comment, removeComment } = this.props;
+    const { access, user, comment, removeComment } = this.props;
     const { voteChange } = this.state;
     const formattedDateTime = formatDateTime(comment.created_at)
     return <ul className="list-item2" key={`user-${comment.article_id}`}>
@@ -14,10 +14,10 @@ class ArticleComment extends Component {
       <p>{formattedDateTime}</p>
       <p>{voteHeart(comment.votes + voteChange)} {comment.votes + voteChange}</p>
       <p className="comment-body">{comment.body}</p>
-      <p>Tell us what you thought about the comment:
+      {(access === 'admin' || access === 'member') && <p>Tell us what you thought about the comment:
           {votingButtons(voteChange, this.handleVote)}
-      </p>
-      <button className="delete" onClick={() => removeComment(comment.comment_id)}>DELETE</button>
+      </p>}
+      {(access === 'admin' || user === comment.author) && <button className="delete" onClick={() => removeComment(comment.comment_id)}>DELETE</button>}
     </ul>
   }
 
