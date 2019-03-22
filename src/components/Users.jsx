@@ -18,24 +18,25 @@ class Users extends Component {
     name: '',
     addClicked: false,
   }
-  
+
   render() {
     const { users, removeArticle } = this.props;
     const { selectedUser, relatedArticles, relatedComments, username, avatar_url, name, addClicked } = this.state;
     return <main className="users-comments-grid">
       <div className="users-comments-search">
-      {addClicked
-        ? <form action="post" onSubmit={this.handleUserSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" onChange={this.handleUserChange} value={username} required />
-        <label htmlFor="avatar_url">Avatar URL:</label>
-        <input type="text" id="avatar_url" name="avatar_url" onChange={this.handleUserChange} value={avatar_url} required />
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" onChange={this.handleUserChange} value={name} required />
-        <br />
-        <button>SUBMIT</button>
-        </form>
-        : <p>There are {users.length} users <button onClick={this.toggleAdd}>ADD</button></p>}
+        {addClicked
+          ? <form action="post" onSubmit={this.handleUserSubmit}>
+            <label htmlFor="username">Username:</label>
+            <input type="text" id="username" name="username" onChange={this.handleUserChange} value={username} required />
+            <label htmlFor="avatar_url">Avatar URL:</label>
+            <input type="text" id="avatar_url" name="avatar_url" onChange={this.handleUserChange} value={avatar_url} required />
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" onChange={this.handleUserChange} value={name} required />
+            <br />
+            <button>SUBMIT</button>
+            <button className="delete" onClick={this.handleCancel}>CANCEL</button>
+          </form>
+          : <p>There are {users.length} users <button onClick={this.toggleAdd}>ADD</button></p>}
       </div>
       <div className="users-comments-info">
         <SelectedUser
@@ -46,13 +47,13 @@ class Users extends Component {
           removeComment={this.removeComment}
         /></div>
       <ul className="users-comments-list">
-      {users.map(user => {
+        {users.map(user => {
           return <User
             key={user.username}
             user={user}
             fetchUser={this.fetchUser}
           />
-      })}
+        })}
       </ul>
     </main>
   }
@@ -65,9 +66,9 @@ class Users extends Component {
     return Promise.all([fetchedUser, fetchedRelatedArticles, fetchedRelatedComments])
       .then(([user, articles, comments]) => {
         this.setState({
-            selectedUser: user,
-            relatedArticles: articles,
-            relatedComments: comments
+          selectedUser: user,
+          relatedArticles: articles,
+          relatedComments: comments
         })
       })
   }
@@ -99,6 +100,10 @@ class Users extends Component {
       avatar_url: '',
       name: ''
     })
+  }
+
+  handleCancel = () => {
+    this.state.addClicked && this.setState({ addClicked: false })
   }
 
   toggleAdd = () => {

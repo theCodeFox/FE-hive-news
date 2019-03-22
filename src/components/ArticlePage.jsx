@@ -70,6 +70,7 @@ class ArticlePage extends Component {
             <label htmlFor="comment-body">Comment Body:</label>
             <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
             <button>SUBMIT</button>
+            <button className="delete" onClick={this.handleCancel}>CANCEL</button>
           </form>
           : <div>{(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}
             <label htmlFor="comment-sort">Sort Comments:</label>
@@ -142,6 +143,10 @@ class ArticlePage extends Component {
           return { comments: formattedComments }
         })
       })
+  }
+
+  handleCancel = () => {
+    this.state.addClicked && this.setState({ addClicked: false })
   }
 
   toggleAdd = () => {

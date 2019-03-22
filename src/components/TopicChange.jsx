@@ -18,6 +18,7 @@ class TopicChange extends Component {
           <label htmlFor="description">Description:</label>
           <input type="text" id="description" onChange={this.handleTopicChange} value={description} required />
           <button>SUBMIT</button>
+          <button className="delete" onClick={this.handleCancel}>CANCEL</button>
         </form>
         : <p>There are {topics.length} topics {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /></p>}
     </div>
@@ -39,6 +40,10 @@ class TopicChange extends Component {
       slug: '',
       description: ''
     })
+  }
+
+  handleCancel = () => {
+    this.state.addClicked && this.setState({ addClicked: false })
   }
 
   toggleAdd = () => {

@@ -24,6 +24,7 @@ class ArticleChange extends Component {
           <input
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
           <button>SUBMIT</button>
+          <button className="delete" onClick={this.handleCancel}>CANCEL</button>
         </form>
         : <p>There are {total_articles} articles in total {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
           <select id="comment-sort" onChange={(event) => {
@@ -67,6 +68,10 @@ class ArticleChange extends Component {
       topic: 'coding',
       body: '',
     })
+  }
+
+  handleCancel = () => {
+    this.state.addClicked && this.setState({ addClicked: false })
   }
 
   toggleAdd = () => {
