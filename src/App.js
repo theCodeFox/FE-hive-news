@@ -67,7 +67,7 @@ class App extends Component {
           <Link to="/topics" className="nav-link">Topics</Link>
           {(access === 'admin') && <Link to="/users" className="nav-link">Users</Link>}
           <Link to="/login" className="nav-link">
-            {user || `Anonymous`}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
+            {(user === 'Anonymous') ? 'Join Us Here!' : ((user.length > 15) ? `Hello ${user.slice(0, 12)}...` : `Hello ${user}`)}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
           </Link>
         </nav>
         <Router className="main">
