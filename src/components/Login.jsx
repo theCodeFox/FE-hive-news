@@ -60,7 +60,6 @@ class Login extends Component {
     const userCheck = this.props.users.filter(user => user.username === loggedInUser)
     if (userCheck.length === 0) this.setState({ isInvalid: true })
     else {
-      console.log('hello')
       const avatar_url = userCheck[0].avatar_url;
       this.props.changeUser(loggedInUser, avatar_url);
       this.setState({

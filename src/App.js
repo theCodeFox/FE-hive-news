@@ -21,6 +21,7 @@ import Login from './components/Login';
 class App extends Component {
   state = {
     adminUsers: ['grumpy19', 'jessjelly'],
+    access: ls.get('access') || 'none',
     user: ls.get('user') || "Anonymous",
     userAvatar: ls.get('userAvatar') || 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
     users: [],
@@ -34,6 +35,7 @@ class App extends Component {
     this.fetchAllData()
       .then(([users, topics, articles, totalArticles]) => {
         return this.setState({
+          access: ls.get('access') || 'none',
           user: ls.get('user') || "Anonymous",
           userAvatar: ls.get('userAvatar') || 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg',
           users,
@@ -54,6 +56,7 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.access)
     const { user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
@@ -111,12 +114,17 @@ class App extends Component {
     const user = "Anonymous";
     const userAvatar = 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg';
     this.setState({ user: user, userAvatar: userAvatar, })
+    ls.set('access', 'none')
     ls.set('user', user);
     ls.set('userAvatar', userAvatar)
   }
 
   changeUser = (user, userAvatar) => {
-    this.setState({ user, userAvatar })
+    const { adminUsers, users } = this.state;
+    const checkAdminAccess = adminUsers.filter(adminUser => adminUser === user);
+    const userAccess = (checkAdminAccess.length === 1) ? 'admin' : ((user === 'Anonymous') ? 'none' : 'member');
+    this.setState({ user, userAvatar, access: userAccess })
+    ls.set('access', userAccess)
     ls.set('user', user);
     ls.set('userAvatar', userAvatar)
   }
