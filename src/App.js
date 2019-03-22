@@ -170,7 +170,7 @@ class App extends Component {
   filterArticles = (query) => {
     fetchFilteredArticles(query)
       .then(filteredArticles => this.setState({
-        articles: filteredArticles
+        articles: filteredArticles, p: 1
       })
       )
   }

@@ -6,6 +6,7 @@ class ArticleChange extends Component {
     title: '',
     topic: 'coding',
     body: '',
+    p: 1
   }
   render() {
     const { access, total_articles, topics, changeArticlePage, p } = this.props;
@@ -49,7 +50,7 @@ class ArticleChange extends Component {
     const sortOrders = sortData.split('-');
     const query = {
       [articleDataKey]: sortOrders[0],
-      order: sortOrders[1]
+      order: sortOrders[1],
     };
     this.props.filterArticles(query)
   }

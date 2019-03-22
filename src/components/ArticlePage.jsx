@@ -128,7 +128,7 @@ class ArticlePage extends Component {
     const id = this.state.article.article_id;
     fetchFilteredComments(id, query)
       .then(newComments => {
-        this.setState({ comments: newComments })
+        this.setState({ comments: newComments, p: 1 })
       })
   }
 
