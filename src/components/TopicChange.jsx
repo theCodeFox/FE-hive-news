@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { cancelImage, submitImage, addImage } from '../utils/app-utils';
 
 class TopicChange extends Component {
   state = {
@@ -17,10 +18,10 @@ class TopicChange extends Component {
           <br />
           <label htmlFor="description">Description:</label>
           <input type="text" id="description" onChange={this.handleTopicChange} value={description} required />
-          <button>SUBMIT</button>
-          <button className="delete" onClick={this.handleCancel}>CANCEL</button>
+          <button className="button-image">{submitImage()}</button>
+          <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {topics.length} topics {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /></p>}
+        : <p>There are {topics.length} topics {(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /></p>}
     </div>
   }
 

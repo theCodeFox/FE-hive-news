@@ -61,12 +61,12 @@ class App extends Component {
     const { access, user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
-        <nav className="nav">
+        <nav className="nav nav-top">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/topics" className="nav-link">Topics</Link>
           {(access === 'admin') && <Link to="/users" className="nav-link">Users</Link>}
-          <Link to="/login" className="nav-link">
-            {(user === 'Anonymous') ? 'Join Us Here!' : ((user.length > 15) ? `Hello ${user.slice(0, 12)}...` : `Hello ${user}`)}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" />
+          <Link to="/login" className="nav-link nav-right">
+            {(user === 'Anonymous') ? 'Join Us Here!' : ((user.length > 15) ? `Hello ${user.slice(0, 12)}...` : `Hello ${user}`)}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" className="nav-img" />
           </Link>
         </nav>
         <Router className="main">
@@ -106,7 +106,7 @@ class App extends Component {
           />
           <NotFound path="/not-found" default />
         </Router>
-        <nav className="nav">
+        <nav className="nav nav-bottom">
           footer
         </nav>
       </div>

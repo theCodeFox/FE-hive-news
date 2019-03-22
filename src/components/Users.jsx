@@ -7,6 +7,7 @@ import {
   deleteComment
 } from '../utils/users';
 import SelectedUser from './SelectedUser';
+import { cancelImage, submitImage, addImage } from '../utils/app-utils';
 
 class Users extends Component {
   state = {
@@ -33,10 +34,10 @@ class Users extends Component {
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" name="name" onChange={this.handleUserChange} value={name} required />
             <br />
-            <button>SUBMIT</button>
-            <button className="delete" onClick={this.handleCancel}>CANCEL</button>
+            <button className="button-image">{submitImage()}</button>
+            <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
           </form>
-          : <p>There are {users.length} users <button onClick={this.toggleAdd}>ADD</button></p>}
+          : <p>There are {users.length} users <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button></p>}
       </div>
       <div className="users-comments-info">
         <SelectedUser

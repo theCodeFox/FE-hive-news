@@ -9,6 +9,12 @@ import {
   patchVote,
   postComment,
   fetchFilteredComments,
+  deleteImage,
+  cancelImage,
+  submitImage,
+  addImage,
+  rightImage,
+  leftImage,
 } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
@@ -58,10 +64,10 @@ class ArticlePage extends Component {
         {(access === 'admin' || access === 'member') && <p>Tell us what you thought about the article:
           {votingButtons(voteChange, this.handleVote)}
         </p>}
-        {(access === 'admin' || user === article.author) && <button className="delete" onClick={() => {
+        {(access === 'admin' || user === article.author) && <button className="button-image" onClick={() => {
           removeArticle(article.article_id)
           navigate('/topics', { state: { msg: 'article deleted' } })
-        }}>DELETE</button>}
+        }}>{deleteImage()}</button>}
         <br /><br />
 
         <h3>Comments</h3>
@@ -69,10 +75,10 @@ class ArticlePage extends Component {
           ? <form action="post" onSubmit={this.handleCommentSubmit}>
             <label htmlFor="comment-body">Comment Body:</label>
             <input type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required />
-            <button>SUBMIT</button>
-            <button className="delete" onClick={this.handleCancel}>CANCEL</button>
+            <button className="button-image">{submitImage()}</button>
+            <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
           </form>
-          : <div>{(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}
+          : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}
             <label htmlFor="comment-sort">Sort Comments:</label>
             <select id="comment-sort" onChange={(event) => {
               this.sortComments('sort_by', event.target.value)
@@ -85,9 +91,9 @@ class ArticlePage extends Component {
               <option value="author-desc">Author (z-a)</option>
             </select>
             <br />
-            <button onClick={() => this.changeCommentPage(-1)}>BACK</button>
+            <button className="button-image" onClick={() => this.changeCommentPage(-1)}>{leftImage()}</button>
             page {p}
-            <button onClick={() => this.changeCommentPage(1)}>NEXT</button>
+            <button className="button-image" onClick={() => this.changeCommentPage(1)}>{rightImage()}</button>
           </div>}
         <ul>{comments.map(comment => {
           return <ArticleComment

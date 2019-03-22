@@ -1,6 +1,7 @@
 import React from 'react'
-import { formatDateTime, voteHeart } from '../utils/app-utils';
-import { navigate } from '@reach/router'
+import { formatDateTime, voteHeart, viewImage } from '../utils/app-utils';
+import { navigate } from '@reach/router';
+import { deleteImage } from '../utils/app-utils'
 
 const RelatedComment = ({ comment, removeComment }) => {
   const formattedDateTime = formatDateTime(comment.created_at)
@@ -11,14 +12,12 @@ const RelatedComment = ({ comment, removeComment }) => {
     <p>{voteHeart(comment.votes)} {comment.votes}</p>
     <p className="comment-body">{comment.body}</p>
     <button
-    className="view"
-    onClick={() => {
-      navigate(`/articles/${comment.article_id}`, { state: { msg: 'article that comment belongs to' }})
-    }}
-    >
-      VIEW
-    </button>
-    <button className="delete" onClick={() => removeComment(comment.comment_id)}>DELETE</button>
+      className="button-image"
+      onClick={() => {
+        navigate(`/articles/${comment.article_id}`, { state: { msg: 'article that comment belongs to' } })
+      }}
+    >{viewImage()}</button>
+    <button className="button-image" onClick={() => removeComment(comment.comment_id)}>{deleteImage()}</button>
   </div>
 }
 

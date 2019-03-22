@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { formatDateTime, voteHeart, votingButtons, patchVote } from '../utils/app-utils';
+import { formatDateTime, voteHeart, votingButtons, patchVote, deleteImage } from '../utils/app-utils';
 
 class ArticleComment extends Component {
   state = {
@@ -17,7 +17,7 @@ class ArticleComment extends Component {
       {(access === 'admin' || access === 'member') && <p>Tell us what you thought about the comment:
           {votingButtons(voteChange, this.handleVote)}
       </p>}
-      {(access === 'admin' || user === comment.author) && <button className="delete" onClick={() => removeComment(comment.comment_id)}>DELETE</button>}
+      {(access === 'admin' || user === comment.author) && <button className="button-image" onClick={() => removeComment(comment.comment_id)}>{deleteImage()}</button>}
     </ul>
   }
 

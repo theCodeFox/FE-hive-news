@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { cancelImage, submitImage, addImage, leftImage, rightImage } from '../utils/app-utils';
 
 class ArticleChange extends Component {
   state = {
@@ -24,10 +25,10 @@ class ArticleChange extends Component {
           <label htmlFor="body">Body:</label>
           <input
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
-          <button>SUBMIT</button>
-          <button className="delete" onClick={this.handleCancel}>CANCEL</button>
+          <button className="button-image">{submitImage()}</button>
+          <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {total_articles} articles in total {(access === 'admin' || access === 'member') && <button onClick={this.toggleAdd}>ADD</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
+        : <p>There are {total_articles} articles in total {(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
           <select id="comment-sort" onChange={(event) => {
             this.sortArticles('sort_by', event.target.value)
           }}>
@@ -39,9 +40,9 @@ class ArticleChange extends Component {
             <option value="author-desc">Author (z-a)</option>
           </select>
           <br />
-          <button onClick={() => changeArticlePage(-1)}>BACK</button>
+          <button className="button-image" onClick={() => changeArticlePage(-1)}>{leftImage()}</button>
           page {p}
-          <button onClick={() => changeArticlePage(1)}>NEXT</button>
+          <button className="button-image" onClick={() => changeArticlePage(1)}>{rightImage()}</button>
         </p>}
     </div>
   }
