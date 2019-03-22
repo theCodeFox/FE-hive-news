@@ -117,13 +117,14 @@ class App extends Component {
   logOut = () => {
     const user = "Anonymous";
     const userAvatar = 'https://banner2.kisspng.com/20180326/fde/kisspng-what-emoji-2-ghost-it-coque-android-ghost-5ab94bf160b6f3.3122808615220930413962.jpg';
-    this.setState({ user: user, userAvatar: userAvatar, })
+    this.setState({ user, userAvatar, access: 'none' })
     ls.set('access', 'none')
     ls.set('user', user);
     ls.set('userAvatar', userAvatar)
   }
 
   changeUser = (user, userAvatar) => {
+    console.log(user, '<-- user')
     const { adminUsers } = this.state;
     const checkAdminAccess = adminUsers.filter(adminUser => adminUser === user);
     const userAccess = (checkAdminAccess.length === 1) ? 'admin' : ((user === 'Anonymous') ? 'none' : 'member');
