@@ -133,9 +133,9 @@ export const addImage = () => {
 }
 
 export const rightImage = () => {
-  return <img src={require("../images/hexagon-right.png")} alt="next" height="30px" width="30px" className="hexagon-buttons" />
+  return <img src={require("../images/hexagon-right.png")} alt="next" height="15px" width="15px" className="hexagon-buttons" />
 }
 
 export const leftImage = () => {
-  return <img src={require("../images/hexagon-left.png")} alt="back" height="30px" width="30px" className="hexagon-buttons" />
+  return <img src={require("../images/hexagon-left.png")} alt="back" height="15px" width="15px" className="hexagon-buttons" />
 }
