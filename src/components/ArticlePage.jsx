@@ -54,7 +54,7 @@ class ArticlePage extends Component {
     } = this.state;
     const formattedTime = (article.created_at) && formatDateTime(article.created_at)
     return (
-      <main>
+      <main className="article-page">
         <h4>Topic: {article.topic}</h4>
         <h3>Title: {article.title}</h3>
         <h4>Author: {article.author}</h4>

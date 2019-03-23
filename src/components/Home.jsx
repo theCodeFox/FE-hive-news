@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = () => {
-    return <main>
+    return <main className="home">
         I'm home
     </main>
 }

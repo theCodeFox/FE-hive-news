@@ -11,7 +11,8 @@ ul {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  overflow: scroll;
+  overflow-x: hidden;
+  /* overflow-y: scroll; */
 }
 h3 {
     margin: 0;
@@ -84,6 +85,10 @@ img {
   padding: 1em;
   margin: 0 0 2em 0;
 }
+.home {
+
+  background-color: rgba(255, 255, 255, 0.8);
+}
 .main-login {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1em;
@@ -107,27 +112,31 @@ img {
 }
 .topic-article-changeTopic {
     grid-area: changeTopic;
-    border: dashed 1px green;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
 }
 .topic-article-changeArticle {
     grid-area: changeArticle;
-    border: dashed 1px orange;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
 }
 .topic-article-topics {
     grid-area: topics;
-    border: dashed 1px green;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .topic-article-articles {
     grid-area: articles;
-    border: dashed 1px orange;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .list-item {
     width: 100%;
@@ -146,6 +155,7 @@ img {
     background: none;
     border: none;
     padding: 0;
+    margin: 0 0.5em;
 }
 .button-image:hover {
   transform: scale(1.1);
@@ -155,28 +165,31 @@ img {
     width: 100%;
     display: grid;
     align-content: center;
-    grid-template: 5em 30em / 50% 50%;
+    grid-template: 9em 30em / 50% 50%;
     grid-template-areas:
     "search list"
     "info list"
 }
 .users-comments-search {
-    grid-area: search;
-    border: dashed 1px aqua;
-    padding: 0.5em;
-    margin: 0.5em;
+  grid-area: search;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5em;
+  margin: 0.5em;
+  text-align: center;
 }
 .users-comments-info {
     grid-area: info;
-    border: dashed 1px blueviolet;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
 }
 .users-comments-list {
     grid-area: list;
-    border: dashed 1px plum;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0.5em;
     margin: 0.5em;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .user {
     display: flex;
@@ -192,6 +205,12 @@ img {
     flex-flow: row wrap;
     justify-content: space-between;
     overflow-x: hidden;
-    height: 100%;
-    width: 100%;
+    height: 102%;
+    width: 103%;
+}
+.article-page {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5em;
+  margin: 0.5em;
+  overflow-x: hidden;
 }
