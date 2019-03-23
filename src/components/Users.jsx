@@ -24,24 +24,26 @@ class Users extends Component {
     const { users, removeArticle } = this.props;
     const { selectedUser, relatedArticles, relatedComments, username, avatar_url, name, addClicked } = this.state;
     return <main className="users-comments-grid">
-      <div className="users-comments-search">
-        {addClicked
-          ? <div><form className="search-form" action="post" onSubmit={this.handleUserSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" name="username" onChange={this.handleUserChange} value={username} required />
-            <br />
-            <label htmlFor="avatar_url">Avatar URL:</label>
-            <input type="text" id="avatar_url" name="avatar_url" onChange={this.handleUserChange} value={avatar_url} required />
-            <br />
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" onChange={this.handleUserChange} value={name} required />
-          </form>
-            <button className="button-image">{submitImage()}</button>
-            <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
-          </div>
-          : <p>There are {users.length} users <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button></p>}
-      </div>
       <div className="users-comments-info">
+        <div className="user-add">
+          {addClicked
+            ? <div><form className="search-form" action="post" onSubmit={this.handleUserSubmit}>
+              <label htmlFor="username">Username:</label>
+              <input type="text" id="username" name="username" onChange={this.handleUserChange} value={username} required />
+              <br />
+              <label htmlFor="avatar_url">Avatar URL:</label>
+              <input type="text" id="avatar_url" name="avatar_url" onChange={this.handleUserChange} value={avatar_url} required />
+              <br />
+              <label htmlFor="name">Name:</label>
+              <input type="text" id="name" name="name" onChange={this.handleUserChange} value={name} required />
+            </form>
+              <button className="button-image">{submitImage()}</button>
+              <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
+            </div>
+            : <p>There are {users.length} users
+            <br />
+              <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button></p>}
+        </div>
         <SelectedUser
           user={selectedUser}
           articles={relatedArticles}

@@ -162,26 +162,19 @@ img {
 }
 
 .users-comments-grid {
-    width: 100%;
-    display: grid;
-    align-content: center;
-    grid-template: 9em 30em / 50% 50%;
-    grid-template-areas:
-    "search list"
-    "info list"
+  width: 100%;
+  display: grid;
+  align-content: center;
+  grid-template: 9em 30em / 50% 50%;
+  grid-template-areas:
+  "info list"
+  "info list"
 }
-.users-comments-search {
-  grid-area: search;
+.users-comments-info {
+  grid-area: info;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5em;
   margin: 0.5em;
-  text-align: center;
-}
-.users-comments-info {
-    grid-area: info;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 0.5em;
-    margin: 0.5em;
 }
 .users-comments-list {
     grid-area: list;
@@ -207,6 +200,12 @@ img {
     overflow-x: hidden;
     height: 102%;
     width: 103%;
+}
+.user-add {
+  text-align: center;
+  padding: 0.5em;
+  margin: 0.5em;
+  border: dashed 2px black;
 }
 .article-page {
   background-color: rgba(255, 255, 255, 0.8);
