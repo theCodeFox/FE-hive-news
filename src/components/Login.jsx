@@ -35,15 +35,26 @@ class Login extends Component {
           </form>
           : <div>
             <h3>Hello {user}!</h3>
-            <p>Not you? Then please type your username below or simply <button className="button-image" onClick={logOut}>{logoutImage()}</button></p>
+            <p>Not you? Then please type your username below or simply
+              <br />
+              <button className="button-image" onClick={logOut}>{logoutImage()}</button></p>
+            <br />
             <form action="post">
               <label htmlFor="login">Login:</label>
               <input type="text" id="login" value={loggedInUser} onChange={this.handleLoginChange} required />
+              <br />
               <button className="button-image" onClick={this.handleLoginSubmit}>{submitImage()}</button>
             </form>
+            <br />
             {isInvalid && <p>Invalid Username, please try again</p>}
-            <p>Or if you don't have a username then why not join us. Then you can create your own articles as well as comment and vote!</p>
+            <p>Or if you don't have a username then why not join us? Then you too can create your own articles, as well as comment and vote!</p>
             <button className="button-image" onClick={this.toggleAdd}>{joinImage()}</button>
+            <br />
+            <p className="temp-area">There are 3 levels of access: to see the differences then please use the following usernames to log in:
+              <br />Admin (jessjelly)
+              <br />Member (cooljmessy)
+              <br />Anonymous/Guest (just click logout or look around before you try one of the above users)
+            </p>
           </div>}
       </div>
     </main>
