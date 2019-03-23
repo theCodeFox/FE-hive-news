@@ -22,7 +22,7 @@ class TopicChange extends Component {
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {topics.length} topics {(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /></p>}
+        : <p>There are {topics.length} topics<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /></p>}
     </div>
   }
 

@@ -32,7 +32,7 @@ class ArticleChange extends Component {
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {total_articles} articles in total {(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
+        : <p>There are {total_articles} articles in total<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
           <select id="comment-sort" onChange={(event) => {
             this.sortArticles('sort_by', event.target.value)
           }}>
