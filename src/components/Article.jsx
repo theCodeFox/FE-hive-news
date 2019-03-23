@@ -4,15 +4,15 @@ import { navigate } from '@reach/router';
 
 const Article = ({ article }) => {
   const formattedDateTime = formatDateTime(article.created_at)
-  return <li className="list-item">
+  return <li className="list-item highlight-area">
     <h3>{article.title}</h3>
     <p>Author: {article.author}</p>
-    <p>{formattedDateTime}</p>
-    <p>{voteHeart(article.votes)} {article.votes}</p>
-    <p>Comments - {article.comment_count}</p>
+    <p className="date-time">{formattedDateTime}</p>
+    <p className="comment-spacing">{article.comment_count} Comments</p>
+    <p>{voteHeart(article.votes)} {article.votes} votes
     <button className="button-image" onClick={() => {
-      navigate(`/articles/${article.article_id}`, { state: { msg: 'article requested' } })
-    }}>{viewImage()}</button>
+        navigate(`/articles/${article.article_id}`, { state: { msg: 'article requested' } })
+      }}>{viewImage()}</button></p>
   </li>
 }
 

@@ -9,15 +9,19 @@ class ArticleComment extends Component {
     const { access, user, comment, removeComment } = this.props;
     const { voteChange } = this.state;
     const formattedDateTime = formatDateTime(comment.created_at)
-    return <ul className="list-item2" key={`user-${comment.article_id}`}>
-      <p>Author: {comment.author}</p>
-      <p>{formattedDateTime}</p>
-      <p>{voteHeart(comment.votes + voteChange)} {comment.votes + voteChange}</p>
-      <p className="comment-body">{comment.body}</p>
-      {(access === 'admin' || access === 'member') && <p>Tell us what you thought about the comment:
-          {votingButtons(voteChange, this.handleVote)}
-      </p>}
-      {(access === 'admin' || user === comment.author) && <button className="button-image" onClick={() => removeComment(comment.comment_id)}>{deleteImage()}</button>}
+    return <ul className="list-item highlight-area" key={`user-${comment.article_id}`}>
+      <div className="article-comment">Author: {comment.author}
+        <br />
+        <p className="date-time">{formattedDateTime}</p>
+        <br />
+        <p className="comment-body">{comment.body}</p>
+        <p>{voteHeart(comment.votes + voteChange)} {comment.votes + voteChange} votes</p>
+        {(access === 'admin' || access === 'member') &&
+          <p>Tell us what you thought about the comment: <br />
+            {votingButtons(voteChange, this.handleVote)}
+            {(access === 'admin' || user === comment.author) && <button className="button-image" onClick={() => removeComment(comment.comment_id)}>{deleteImage()}</button>}
+          </p>}
+      </div>
     </ul>
   }
 

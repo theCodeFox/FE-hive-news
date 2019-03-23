@@ -12,19 +12,23 @@ class ArticleChange extends Component {
   render() {
     const { access, total_articles, topics, changeArticlePage, p } = this.props;
     const { addClicked, title, topic, body } = this.state;
-    return <div className="topic-article-changeArticle">
+    return <div className="user-add">
       {addClicked
         ? <form action="post" onSubmit={this.handleArticleSubmit}>
           <label htmlFor="title">Title:</label>
+          <br />
           <input type="text" name="title" onChange={(event) => this.handleArticleChange('title', event.target.value)} value={title} required />
           <br />
+          <label htmlFor="select-topic">Topic: </label>
           <select onChange={(event) => this.handleArticleChange('topic', event.target.value)}>
             {topics.map(topicOption => <option defaultValue={topicOption === topic} value={topicOption.slug} key={topicOption.slug}>{topicOption.slug}</option>)}
           </select>
           <br />
           <label htmlFor="body">Body:</label>
-          <input
+          <br />
+          <textarea className="body"
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
+          <br />
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
@@ -40,9 +44,9 @@ class ArticleChange extends Component {
             <option value="author-desc">Author (z-a)</option>
           </select>
           <br />
-          <button className="button-image" onClick={() => changeArticlePage(-1)}>{leftImage()}</button>
+          <button className="button-image" onClick={() => changeArticlePage(-1)}>{leftImage()}{leftImage()}{leftImage()}</button>
           page {p}
-          <button className="button-image" onClick={() => changeArticlePage(1)}>{rightImage()}</button>
+          <button className="button-image" onClick={() => changeArticlePage(1)}>{rightImage()}{rightImage()}{rightImage()}</button>
         </p>}
     </div>
   }
