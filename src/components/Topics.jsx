@@ -16,34 +16,38 @@ const Topics = ({
   p,
 }) => {
   return <main className="topic-article-grid">
-    <TopicChange
-      access={access}
-      topics={topics}
-      addTopic={addTopic}
-    />
-    <ArticleChange
-      access={access}
-      total_articles={total_articles}
-      addArticle={addArticle}
-      topics={topics}
-      filterArticles={filterArticles}
-      changeArticlePage={changeArticlePage}
-      p={p}
-    />
-    <ul className="topic-article-topics">
-      {topics.map(topic => {
-        return <Topic
-          key={topic.slug}
-          topic={topic}
-          filterArticles={filterArticles}
+    <div className="topic-article-topics">
+      <TopicChange
+        access={access}
+        topics={topics}
+        addTopic={addTopic}
+      />
+      <ul>
+        {topics.map(topic => {
+          return <Topic
+            key={topic.slug}
+            topic={topic}
+            filterArticles={filterArticles}
+          />
+        })}</ul>
+    </div>
+    <div className="topic-article-articles">
+      <ArticleChange
+        access={access}
+        total_articles={total_articles}
+        addArticle={addArticle}
+        topics={topics}
+        filterArticles={filterArticles}
+        changeArticlePage={changeArticlePage}
+        p={p}
+      />
+      <ul>{articles.map(article => {
+        return <Article
+          key={article.article_id}
+          article={article}
         />
       })}</ul>
-    <ul className="topic-article-articles">{articles.map(article => {
-      return <Article
-        key={article.article_id}
-        article={article}
-      />
-    })}</ul>
+    </div>
   </main>
 }
 

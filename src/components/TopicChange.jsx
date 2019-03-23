@@ -10,14 +10,15 @@ class TopicChange extends Component {
   render() {
     const { topics, access } = this.props;
     const { addClicked, slug, description } = this.state;
-    return <div className="topic-article-changeTopic">
+    return <div className="user-add">
       {addClicked
         ? <form action="post" onSubmit={this.handleTopicSubmit}>
-          <label htmlFor="slug">Topic Slug:</label>
+          <label htmlFor="slug">Topic:</label>
           <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required />
           <br />
           <label htmlFor="description">Description:</label>
-          <input type="text" id="description" onChange={this.handleTopicChange} value={description} required />
+          <br />
+          <textarea type="text" id="description" onChange={this.handleTopicChange} value={description} required />
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
