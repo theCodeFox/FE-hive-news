@@ -86,19 +86,23 @@ img {
   margin: 0 0 2em 0;
 }
 .home {
-
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2%;
 }
 .main-login {
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2%;
   padding: 1em;
-  border: dashed 1px black;
   border-radius: 2%;
   text-align: center;
 }
 
 .comment-body {
     font-style: italic;
+}
+.date-time {
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 .topic-article-grid {
@@ -113,18 +117,21 @@ img {
 .topic-article-changeTopic {
     grid-area: changeTopic;
     background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2%;
     padding: 0.5em;
     margin: 0.5em;
 }
 .topic-article-changeArticle {
     grid-area: changeArticle;
     background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2%;
     padding: 0.5em;
     margin: 0.5em;
 }
 .topic-article-topics {
     grid-area: topics;
     background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2%;
     padding: 0.5em;
     margin: 0.5em;
     overflow-x: hidden;
@@ -133,6 +140,7 @@ img {
 .topic-article-articles {
     grid-area: articles;
     background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2%;
     padding: 0.5em;
     margin: 0.5em;
     overflow-x: hidden;
@@ -173,12 +181,16 @@ img {
 .users-comments-info {
   grid-area: info;
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2%;
   padding: 0.5em;
   margin: 0.5em;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .users-comments-list {
     grid-area: list;
     background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2%;
     padding: 0.5em;
     margin: 0.5em;
     overflow-x: hidden;
@@ -190,26 +202,36 @@ img {
     justify-content: space-between;
     overflow-x: hidden;
     width: 100%;
-    padding: 0 0 1em 0;
+    border: dashed 1px black;
+    border-radius: 2%;
+    padding: 0.5em;
+    margin: 0 0 1em 0;
     text-align: center;
+}
+.user:hover {
+  background-color: rgba(255, 217, 0, 0.2);
+  margin: 0.5em;
 }
 .user-info {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     overflow-x: hidden;
-    height: 102%;
-    width: 103%;
 }
 .user-add {
   text-align: center;
   padding: 0.5em;
   margin: 0.5em;
   border: dashed 2px black;
+  border-radius: 2%;
 }
 .article-page {
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2%;
   padding: 0.5em;
   margin: 0.5em;
   overflow-x: hidden;
+}
+.related-articles-comments {
+  padding: 1em 0;
 }

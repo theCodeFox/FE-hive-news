@@ -21,8 +21,8 @@ class SelectedUser extends Component {
             <p>Name: {user.name}</p>
           </span>
           <Img src={[user.avatar_url, defaultAvatar]} alt={`${user.username}'s avatar`} height="30px" width="30px" />
-          <div>
-            <h3>Related Articles</h3>
+          <div className="related-articles-comments">
+            <h3>Related Articles:</h3>
             <div>{articles.map(article => {
               return <RelatedArticle
                 key={`related-article-${article.article_id}`}
@@ -30,7 +30,7 @@ class SelectedUser extends Component {
                 removeArticle={removeArticle}
               />
             })}</div>
-            <h3>Related Comments</h3>
+            <h3>Related Comments:</h3>
             <div>{comments.map(comment => {
               return <RelatedComment
                 key={`related-comment-${comment.comment_id}`}
