@@ -3,7 +3,7 @@ import React from 'react';
 const Home = () => {
   return <main className="home-grid">
     <div className="home-intro center home">
-      <div className="highlight-area intro"><h3>Hello and welcome to theCodeFox-Knews!</h3>
+      <div className="highlight-area intro"><h3>Hello and welcome to theCodeFox-News!</h3>
         <p className="comment-body intro">
           This is a study project used to learn React, Reach Router, JS, HTML and CSS. Not only has it bee a hive of information to myself but I also hope that you find the articles interesting too.
         <br />

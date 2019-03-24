@@ -229,6 +229,10 @@ img {
     "intro intro"
     "intro intro"
   }
+  .nav-link {
+    padding: 0 1em;
+    margin: 0 0.2em 0.5em 0;
+  }
 }
 
 .user {
@@ -341,8 +345,8 @@ select {
 }
 .beehive {
   padding: 0;
-  height: 60%;
-  width: 50%;
+  height: auto;
+  max-width: 50%;
   position: fixed;
   left: 0;
 }
