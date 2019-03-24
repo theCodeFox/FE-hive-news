@@ -89,9 +89,9 @@ class ArticlePage extends Component {
                 <option value="author-asc">Author (a-z)</option>
                 <option value="author-desc">Author (z-a)</option>
               </select></div>
-            <p className="center"><button className="button-image" onClick={() => this.changeCommentPage(-1)}>{leftImage()}</button>
+            <p className="center"><button className="button-image" onClick={() => this.changeCommentPage(-1)}>{leftImage()}{leftImage()}{leftImage()}</button>
               page {p}
-              <button className="button-image" onClick={() => this.changeCommentPage(1)}>{rightImage()}</button>
+              <button className="button-image" onClick={() => this.changeCommentPage(1)}>{rightImage()}{rightImage()}{rightImage()}</button>
             </p>
           </div>}
         <ul>{comments.map(comment => {

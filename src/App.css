@@ -63,6 +63,7 @@ img {
   border-radius: 20%;
 }
 .nav-link {
+  color: black;
     padding: 0 1em;
     margin: 1em 0.2em;
     border: solid 2px black;
@@ -181,6 +182,26 @@ img {
     overflow-y: scroll;
 }
 
+.home-grid {
+  width: 100%;
+  display: grid;
+  align-content: center;
+  grid-template: 50% 50% / 50% 50%;
+  grid-template-areas:
+  "img intro"
+  "img intro"
+}
+.home-intro {
+  grid-area: intro;
+  padding: 1em;
+}
+.home-img {
+  grid-area: img;
+}
+.intro {
+  padding: 0.5em 0;
+}
+
 @media only screen and (max-width: 600px) {
   .users-comments-grid {
     width: 100%;
@@ -199,7 +220,15 @@ img {
     grid-template-areas:
     "topics topics"
     "articles articles"
-}
+  }
+  .home-grid {
+    width: 100%;
+    display: grid;
+    align-content: center;
+    grid-template-areas:
+    "intro intro"
+    "intro intro"
+  }
 }
 
 .user {
@@ -309,4 +338,11 @@ select {
 }
 .right {
   float: right;
+}
+.beehive {
+  padding: 0;
+  height: 60%;
+  width: 50%;
+  position: fixed;
+  left: 0;
 }
