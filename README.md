@@ -1,103 +1,136 @@
+# **theCodeFox-News**
+Allows user to create their own articles or read other users articles and comments. They can comment and vote on what they like or dislike and make changes to their articles or comments including deleting what is no longer needed.
+
+There are 3 levels of access:
+1. `Anonymous` *(when you first arrive or log out)*
+2. `Member` *(when you sign up as a member - please try out cooljmessy as they have multiple articles and comments)*
+3. `Admin` *(has full access to all functionality including a users page for ease of use - please use jessjelly)*
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+***
 
-In the project directory, you can run:
+### **Hosted sites and Repos**
+**`Back-end`**
+* [GitHub - theCodeFox-BE2-NC-Knews](https://github.com/theCodeFox/BE2-NC-Knews)
+* [Heroku - theCodeFox-NC-Knews](https://thecodefox-nc-knews.herokuapp.com/api)
 
-### `npm start`
+**`Front-end`**
+* [GitHub - theCodeFox-NC-Knews](https://github.com/theCodeFox/theCodeFox-NC-Knews)
+* [Netlify - theCodeFox-News](https://thecodefox-news.netlify.com/)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## **Getting Started**
+1. Fork from **`GitHub`**: https://github.com/theCodeFox/theCodeFox-NC-Knews
+2. `Clone into the directory that you will be working from`
+3. Install all dependancies and dev-dependancies *(see Installing below)*
+4. **`npm start`** - runs the app in the development mode *(Open [http://localhost:3000](http://localhost:3000) to view it in the browser, it will reload if you make edits)*
+5. **`npm test`** - launches the test runner in the interactive watch mode. I have used jest and cypress
+6. **`npm run build`** - builds the app for production to the `build` folder.
+7. `Deploy` *(see Deployment below)*
+8. Play around and most importantly... **_have fun!_**
 
-### `npm test`
+***NOTE**: though I have left `npm eject` in, **DO NOT USE** as is a one-way operation and will remove the single build dependency from your project*
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Prerequisites**
 
-### `npm run build`
+`Below is examples of what I used,` (alternatives are available). If you find something that you prefer, please drop me the suggestion on GitHub!
+* Command Line Interface: `iTerm/bash`
+* Source Code Editor: `Visual Studio Code`
+* End-to-End Testing: `Cypress`
+* JavaScript Librarys: `React, Reach/Router, Local-Storage`, `Axios`
+* Deployment Platform: `Netlify`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Installing**
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Once you have cloned the repo then cd into the directory. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From here:
 
-### `npm run eject`
+**Install dependancies**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm install @reach/router axios local-storage react react-dom react-image react-scripts
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Add browserslist to Package JSON**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```JSON
+  {
+      "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+  }
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+*Optional dependancies*
 
-## Learn More
+```
+extention (VSC) - eslint
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*Your Package JSON should look something like this:*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```JSON
+{
+  "name": "codefox-nc-knews",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
+    "local-storage": "^1.4.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-image": "^2.0.0",
+    "react-scripts": "2.1.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
+```
 
-### Code Splitting
+**Don't forget a gitignore file!**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```ruby
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+# testing
+/coverage
+# production
+/build
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-
-## Northcoders News
-
-Northcoders News is a social news aggregation, web content rating, and discussion website. Think something along the lines of [Reddit](https://www.reddit.com/).
-
-Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.
-
-This review sprint should consolidate your understanding of making a [C.R.U.D](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application from a front end perspective.
-
-### Objectives
-1. Pull together all the front-end skills, technologies and best practises you have learnt.
-2. Make asynchronous API calls to your own server.
-4. Use HTTP request types to interact with your backend, and HTTP response codes to update your UI accordingly.
-
-### What to do
-
-Use the generic react-project-checklist as a guide to setting up your app. Here are some project-specific things to bear in mind:
-
-1. Have a look at your API endpoints and at Reddit. Think about what data you have available, and how you will structure your application. What routes will your application have? What articles will you choose to display on the main page?
-
-2. Think how you will isolate the concerns of your project - the structure of your components, the sourcing of your data, the styling.
-
-3. What sort of routing does Reddit use? What sort of specificity do you think you will need? Remember, your urls don't have to directly correspond to your api endpoints, but they will provide some guidance.
-
-4. Think about what data each component will need. Where will it come from? When should components find their own data and when should they load it themselves? Focus on loading a list of articles for your front page first of all.
-
-5. Consider more complex functionality: how do you want to allow changes to your database? Think about how you will attribute users to posted comments etc. How will you know what comments/articles a user should be allowed to delete? How about sorting data, or paginating responses? A good starting point would be to pick a single user and assuming that all new articles and comments are being posted by that user.
-
-6. How are you going to make this a fluid and engaging experience for users, so they want to come back for more?
-
-### 'Must Have' User Stories
+### **User Stories used for end to end tests**
 
 1. As a user, I should be able to view a list of all articles.
 2. As a user, I should be able to view a list of all articles on a specific topic.
@@ -105,9 +138,9 @@ Use the generic react-project-checklist as a guide to setting up your app. Here 
 4. As a user, I should be able to view an individual article's comments.
 5. As a user, I should be able to sort articles by: 
     - date created
-    - comment_count
+    - topic
     - votes
-6. As a hiring partner with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
+6. As a user with no access to my laptop, I should be able to use the site on my mobile without sacrificing style or functionality.
 7. **As a user, I should be able to login to the site.**
 8. **As a hiring partner with no knowledge of the users in the database, it should be very clear to me how I can login to the site.**
 9. As a logged in user, I should be able to post a new article to an existing topic.
@@ -117,36 +150,71 @@ Use the generic react-project-checklist as a guide to setting up your app. Here 
 13. **As a logged in user, I should be able to vote on a comment.**
 14. As a logged in user, I should be able to delete my own articles.
 15. As a logged in user, I should be able to delete my own comments.
-16. As a hiring parter, I should be able to follow the readme instructions to easily run the project locally.
-17. As a hiring parter, I should be able to find a link to the hosted version of the project in the readme.
-18. As a hiring parter, I should be able to find a link to the back-end repository of the project in the readme.
-19. As a hiring parter, I should be able to find a link to the hosted version of the back-end project in the readme.
 
-_**If time...**_
+## **Deployment using Netlify**
 
-20. **As a user, I should be able to navigate over pages of articles (e.g. using pagination or infinite scroll).**
-21. **As a user, I should be able to navigate over pages of comments (e.g. using pagination or infinite scroll).**
-22. As a user, I should be able to view a list of all articles written by a specific user.
+1. Add a file, `_redirects` (no file extension) to your `public` directory.
+2. This file should contain the redirect rule: `/* /index.html 200`.
+3. Use command `npm run build` in your terminal.
+4. Create a Netlify Account.
+5. Install Netlify's CLI in terminal:
+```
+npm install netlify-cli -g
+```
+6. Use command `netlify deploy` in terminal and follow prompts to authorise with GitHub.
+7. Provide a deploy path: `./build`
+8. Your draft version should now be deployed on a url, e.g.<br>
+`https://5c13ab16055b9be1725868e6--your-site-name.netlify.com`.<br>
+Test it out, make sure that everything is working as expected.
+9. Use command `netlify deploy --prod` in your terminal and specify `./build` as your build path again *(This will deploy the site to your actual url: `https://your-site-name.netlify.com`.)*
 
-*Note regarding **BOLD** user stories:*
-- User login / auth to be covered in Tuesday's lecture
-- Voting / optimistic rendering to be covered in Wednesday's lecture
-- Error handling / error pages to be covered in Thursday's lecture
-- Infinite scroll / pagination to be covered in Thursday's lecture
+*Good luck!*
+***
 
+## **Contributing**
 
-### Deployment
+This is a course project for study purposes. Rights go to Northcoders who provided the course and assisted with studying.
 
-We will send out some notes, but have a look at this section of the `create-react-app` docs on how to deploy your app using Netlify: https://facebook.github.io/create-react-app/docs/deployment#netlify-https-wwwnetlifycom
+`As a solo sprint there is to be no contributing.`
+***
+## **Versioning**
+* Visual Studio Code - 15.0
+* npm - 6.8.0
 
-**Before moving onto the 'if time' and 'extra credit' sections, submit your code for review! Please send a link to both your GitHub project and your hosted version to the FE2 slack channel** 😀
+```json
+{
+  "name": "codefox-nc-knews",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
+    "local-storage": "^1.4.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-image": "^2.0.0",
+    "react-scripts": "2.1.8"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
+```
+***
+## **Authors**
 
-### Extra credit
+* **Kay Fox** - *Initial work* - [theCodeFox](https://github.com/theCodeFox)
+***
+## **License**
 
-1. Create a route which shows which users have been most active adding articles and comments
-2. Make this route sort the users by how popular they are based on an aggregation of their article and comment vote counts
-3. Implement a filter which re-orders comments based on either the time they were added, or how many votes they have got.
+This project is licensed under the **ISC** License
+***
+## **Acknowledgments**
 
-### Important
-
-This sprint is among the ones we'll ask you to complete in order to put you forward for jobs. Put a little bit of love into it! :)
+* **NorthCoders!** (https://northcoders.com) - A massive thank you for all assistance, teaching, lectures and above all patience.
