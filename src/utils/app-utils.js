@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { navigate } from '@reach/router';
 axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
 
 export const fetchData = (endpoint, page) => {
@@ -138,4 +139,11 @@ export const rightImage = () => {
 
 export const leftImage = () => {
   return <img src={require("../images/hexagon-left.png")} alt="back" height="15px" width="15px" className="hexagon-buttons" />
+}
+
+export const handleError = (err) => {
+  navigate('/not-found', {
+    state: { msg: 'not found', err },
+    replace: true,
+  })
 }

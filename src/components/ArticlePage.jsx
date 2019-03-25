@@ -15,6 +15,7 @@ import {
   addImage,
   rightImage,
   leftImage,
+  handleError,
 } from '../utils/app-utils';
 import ArticleComment from './ArticleComment';
 import { deleteComment } from '../utils/users';
@@ -40,6 +41,7 @@ class ArticlePage extends Component {
           comments: comments.data.comments
         })
       })
+      .catch(err => handleError(err))
   }
 
   render() {
@@ -122,6 +124,7 @@ class ArticlePage extends Component {
           p: newPage,
         })
       })
+      .catch(err => handleError(err))
   }
 
   sortComments = (commentDataKey, sortData) => {
@@ -135,6 +138,7 @@ class ArticlePage extends Component {
       .then(newComments => {
         this.setState({ comments: newComments, p: 1 })
       })
+      .catch(err => handleError(err))
   }
 
   addComment = (body) => {
@@ -148,6 +152,7 @@ class ArticlePage extends Component {
           return { comments: formattedComments }
         })
       })
+      .catch(err => handleError(err))
   }
 
   handleCancel = () => {
@@ -166,7 +171,6 @@ class ArticlePage extends Component {
 
   handleCommentSubmit = (event) => {
     event.preventDefault();
-
     const { body } = this.state;
     this.addComment(body);
     this.setState({
@@ -190,6 +194,7 @@ class ArticlePage extends Component {
           comments: newComments
         })
       })
+      .catch(err => handleError(err))
   }
 };
 

@@ -14,11 +14,13 @@ import {
   postUser,
   fetchFilteredArticles,
   postArticle,
+  handleError,
 } from './utils/app-utils';
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
 import defaultAvatar from './images/nc-knews-default-avatar.png';
+import Footer from './components/Footer';
 
 class App extends Component {
   state = {
@@ -46,6 +48,7 @@ class App extends Component {
           total_articles: totalArticles
         })
       })
+      .catch(err => handleError(err))
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -54,8 +57,6 @@ class App extends Component {
       this.fetchAllData();
     }
   }
-
-
 
   render() {
     const { access, user, userAvatar, users, topics, articles, total_articles, p } = this.state;
@@ -69,7 +70,7 @@ class App extends Component {
             {(user === 'Anonymous') ? 'Join Us Here!' : ((user.length > 15) ? `Hello ${user.slice(0, 12)}...` : `Hello ${user}`)}<Img src={[userAvatar, defaultAvatar]} alt={`${user || `Anonymous`}'s avatar`} height="30px" width="30px" className="nav-img" />
           </Link>
         </nav>
-        <Router className="main">
+        <Router className="main" tabIndex="">
           <Home path="/" />
           <Topics
             path="/topics"
@@ -106,9 +107,9 @@ class App extends Component {
           />
           <NotFound path="/not-found" default />
         </Router>
-        <nav className="nav nav-bottom">
-          footer
-        </nav>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
@@ -146,6 +147,7 @@ class App extends Component {
           p: newPage,
         })
       })
+      .catch(err => handleError(err))
   }
 
   fetchAllData = () => {
@@ -155,6 +157,7 @@ class App extends Component {
     const articles = fetchData('articles', page);
     const totalArticles = fetchTotalArticles();
     return Promise.all([users, topics, articles, totalArticles])
+      .catch(err => handleError(err))
   }
 
   removeArticle = (article_id) => {
@@ -165,6 +168,7 @@ class App extends Component {
           articles: newArticles
         })
       })
+      .catch(err => handleError(err))
   }
 
   filterArticles = (query) => {
@@ -173,6 +177,7 @@ class App extends Component {
         articles: filteredArticles, p: 1
       })
       )
+      .catch(err => handleError(err))
   }
 
   addTopic = (newSlug, newDescription) => {
@@ -183,6 +188,7 @@ class App extends Component {
           return { topics: formattedTopics }
         })
       })
+      .catch(err => handleError(err))
   }
 
   addArticle = (newTitle, newTopic, newBody) => {
@@ -194,6 +200,7 @@ class App extends Component {
           return { articles: formattedArticles }
         })
       })
+      .catch(err => handleError(err))
   }
 
   addUser = (newUsername, newAvatarURL, newName) => {
@@ -204,6 +211,7 @@ class App extends Component {
           return { users: formattedUsers }
         })
       })
+      .catch(err => handleError(err))
   }
 
 }

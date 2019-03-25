@@ -7,7 +7,12 @@ import {
   deleteComment
 } from '../utils/users';
 import SelectedUser from './SelectedUser';
-import { cancelImage, submitImage, addImage } from '../utils/app-utils';
+import {
+  cancelImage,
+  submitImage,
+  addImage,
+  handleError
+} from '../utils/app-utils';
 
 class Users extends Component {
   state = {
@@ -76,6 +81,7 @@ class Users extends Component {
           relatedComments: comments
         })
       })
+      .catch(err => handleError(err))
   }
 
   removeComment = (comment_id) => {
@@ -86,6 +92,7 @@ class Users extends Component {
           relatedComments: newComments
         })
       })
+      .catch(err => handleError(err))
   }
 
   handleUserChange = (event) => {

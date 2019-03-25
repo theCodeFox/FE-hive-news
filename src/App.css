@@ -82,7 +82,7 @@ img {
 .main {
   position: relative;
   padding: 1em;
-  margin: 0 0 2em 0;
+  margin: 0em 0 2em 0;
 }
 .home {
   background-color: rgba(255, 255, 255, 0.8);
@@ -108,7 +108,7 @@ img {
     width: 100%;
     display: grid;
     align-content: center;
-    grid-template: 5em 30em / 50% 50%;
+    grid-template: 5em 30em / auto auto;
     grid-template-areas:
     "topics articles"
     "topics articles"
@@ -158,7 +158,7 @@ img {
   width: 100%;
   display: grid;
   align-content: center;
-  grid-template: 9em 45em / 50% 50%;
+  grid-template: 9em 45em / auto auto;
   grid-template-areas:
   "info list"
   "info list"
@@ -207,7 +207,7 @@ img {
     width: 100%;
     display: grid;
     align-content: center;
-    grid-template: 15em 30em / 50% 50%;
+    grid-template: 15em 30em / auto auto;
     grid-template-areas:
     "info info"
     "list list"
@@ -216,7 +216,7 @@ img {
     width: 100%;
     display: grid;
     align-content: center;
-    grid-template: 15em 30em / 50% 50%;
+    grid-template: 15em 30em / auto auto;
     grid-template-areas:
     "topics topics"
     "articles articles"
@@ -229,9 +229,23 @@ img {
     "intro intro"
     "intro intro"
   }
+  .not-found-grid {
+    width: 100%;
+    display: grid;
+    align-content: center;
+    grid-template-areas:
+    "intro intro"
+    "intro intro"
+  }
   .nav-link {
     padding: 0 1em;
     margin: 0 0.2em 0.5em 0;
+  }
+  .beehive {
+    visibility: hidden;
+  }
+  .beehive-reverse {
+    visibility: hidden;
   }
 }
 
@@ -345,8 +359,31 @@ select {
 }
 .beehive {
   padding: 0;
-  height: auto;
-  max-width: 50%;
+  max-width: 40%;
   position: fixed;
   left: 0;
+}
+.beehive-reverse {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  padding: 0;
+  max-width: 40%;
+  position: fixed;
+  right: 0;
+}
+
+.footer-link {
+  color: black;
+  font-size: 0.6em;
+  text-decoration: none;
+  padding: 0 1em;
+  margin: 0 0.5em;
+}
+.footer-link:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 100%;
 }
