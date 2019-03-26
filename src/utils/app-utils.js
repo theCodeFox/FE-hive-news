@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { navigate } from '@reach/router';
-axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
+axios.defaults.baseURL = 'https://be-hive-news.herokuapp.com/api';
 
 export const fetchData = (endpoint, page) => {
   return axios
