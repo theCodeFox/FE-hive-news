@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### **Hosted sites and Repos**
 **`Front-end`**
 * [Netlify - theCodeFox-News](https://thecodefox-news.netlify.com/)
-* [GitHub - theCodeFox-NC-Knews](https://github.com/theCodeFox/theCodeFox-NC-Knews)
+* [GitHub - theCodeFox-NC-Knews](https://github.com/theCodeFox/FE-hive-news)
 
 **`Back-end`**
 * [Heroku - theCodeFox-NC-Knews](https://be-hive-news.herokuapp.com/api)
@@ -22,7 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ***
 
 ## **Getting Started**
-1. Fork from **`GitHub`**: https://github.com/theCodeFox/theCodeFox-NC-Knews
+1. Fork from **`GitHub`**: https://github.com/theCodeFox/FE-hive-news
 2. `Clone into the directory that you will be working from`
 3. Install all dependancies and dev-dependancies *(see Installing below)*
 4. **`npm start`** - runs the app in the development mode *(Open [http://localhost:3000](http://localhost:3000) to view it in the browser, it will reload if you make edits)*
@@ -110,7 +110,6 @@ extention (VSC) - eslint
 **Don't forget a gitignore file!**
 
 ```ruby
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 # dependencies
 /node_modules
 /.pnp
