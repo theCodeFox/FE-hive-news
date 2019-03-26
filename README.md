@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### **Hosted sites and Repos**
 **`Front-end`**
 * [Netlify - theCodeFox-News](https://thecodefox-news.netlify.com/)
-* [GitHub - theCodeFox-NC-Knews](https://github.com/theCodeFox/FE-hive-news)
+* [GitHub - theCodeFox-NC-Knews](https://github.com/theCodeFox/theCodeFox-NC-Knews)
 
 **`Back-end`**
 * [Heroku - theCodeFox-NC-Knews](https://be-hive-news.herokuapp.com/api)

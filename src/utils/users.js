@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://thecodefox-nc-knews.herokuapp.com/api';
+axios.defaults.baseURL = 'https://be-hive-news.herokuapp.com/api';
 
 export const getUserByUsername = (username) => {
   return axios
