@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { formatDateTime, voteHeart, votingButtons, patchVote, deleteImage } from '../utils/app-utils';
+import {
+  formatDateTime,
+  voteHeart,
+  votingButtons,
+  deleteImage
+} from '../utils/utils';
+import { patchVote } from '../utils/app-utils';
 
 class ArticleComment extends Component {
   state = {

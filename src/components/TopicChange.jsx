@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { cancelImage, submitImage, addImage } from '../utils/app-utils';
+import {
+  cancelImage,
+  submitImage,
+  addImage
+} from '../utils/utils';
 
 class TopicChange extends Component {
   state = {

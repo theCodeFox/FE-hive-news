@@ -1,7 +1,11 @@
 import React from 'react'
-import { formatDateTime, voteHeart, viewImage } from '../utils/app-utils';
+import {
+  formatDateTime,
+  voteHeart,
+  viewImage,
+  deleteImage
+} from '../utils/utils';
 import { navigate } from '@reach/router';
-import { deleteImage } from '../utils/app-utils'
 
 const RelatedComment = ({ comment, removeComment }) => {
   const formattedDateTime = formatDateTime(comment.created_at)

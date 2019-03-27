@@ -1,5 +1,10 @@
 import React from 'react'
-import { formatDateTime, voteHeart, deleteImage, viewImage } from '../utils/app-utils';
+import {
+  formatDateTime,
+  voteHeart,
+  deleteImage,
+  viewImage
+} from '../utils/utils';
 import { navigate } from '@reach/router';
 
 const RelatedArticle = ({ article, removeArticle }) => {

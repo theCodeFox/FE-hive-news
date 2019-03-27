@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import {
   fetchArticleByID,
-  voteHeart,
-  formatDateTime,
   fetchCommentsByArticleID,
-  votingButtons,
   patchVote,
   postComment,
   fetchFilteredComments,
+  deleteComment,
+} from '../utils/app-utils';
+import ArticleComment from './ArticleComment';
+import {
+  voteHeart,
+  formatDateTime,
+  votingButtons,
   deleteImage,
   cancelImage,
   submitImage,
@@ -16,9 +20,7 @@ import {
   rightImage,
   leftImage,
   handleError,
-} from '../utils/app-utils';
-import ArticleComment from './ArticleComment';
-import { deleteComment } from '../utils/users';
+} from '../utils/utils';
 
 class ArticlePage extends Component {
   state = {

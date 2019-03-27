@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterImage } from '../utils/app-utils';
+import { filterImage } from '../utils/utils';
 
 const Topic = ({ topic, filterArticles }) => {
   return <li className="list-item highlight-area">

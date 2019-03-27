@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { cancelImage, submitImage, addImage, leftImage, rightImage } from '../utils/app-utils';
+import {
+  cancelImage,
+  submitImage,
+  addImage,
+  leftImage,
+  rightImage
+} from '../utils/utils';
 
 class ArticleChange extends Component {
   state = {

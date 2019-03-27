@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { submitImage, joinImage, logoutImage, cancelImage } from '../utils/app-utils';
+import {
+  submitImage,
+  joinImage,
+  logoutImage,
+  cancelImage
+} from '../utils/utils';
 
 class Login extends Component {
   state = {

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import User from './User';
 import {
-  getUserByUsername,
-  getRelatedUserArticles,
-  getRelatedUserComments,
-  deleteComment
-} from '../utils/users';
-import SelectedUser from './SelectedUser';
-import {
   cancelImage,
   submitImage,
   addImage,
-  handleError
+  handleError,
+} from '../utils/utils';
+import SelectedUser from './SelectedUser';
+import {
+  getUserByUsername,
+  getRelatedUserArticles,
+  getRelatedUserComments,
+  deleteComment,
 } from '../utils/app-utils';
 
 class Users extends Component {

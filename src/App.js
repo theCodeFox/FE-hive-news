@@ -14,8 +14,8 @@ import {
   postUser,
   fetchFilteredArticles,
   postArticle,
-  handleError,
 } from './utils/app-utils';
+import { handleError } from './utils/utils'
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
