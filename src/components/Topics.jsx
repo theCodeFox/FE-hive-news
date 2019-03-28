@@ -14,6 +14,7 @@ const Topics = ({
   addArticle,
   changeArticlePage,
   p,
+  isLoading
 }) => {
   return <main className="topic-article-grid">
     <div className="topic-article-topics">
@@ -28,6 +29,7 @@ const Topics = ({
             key={topic.slug}
             topic={topic}
             filterArticles={filterArticles}
+            isLoading={isLoading}
           />
         })}</ul>
     </div>
@@ -45,6 +47,7 @@ const Topics = ({
         return <Article
           key={article.article_id}
           article={article}
+          isLoading={isLoading}
         />
       })}</ul>
     </div>

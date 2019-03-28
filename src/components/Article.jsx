@@ -2,13 +2,14 @@ import React from 'react';
 import {
   formatDateTime,
   voteHeart,
-  viewImage
+  viewImage,
+  loadingIcon
 } from '../utils/utils';
 import { navigate } from '@reach/router';
 
-const Article = ({ article }) => {
+const Article = ({ article, isLoading }) => {
   const formattedDateTime = formatDateTime(article.created_at)
-  return <li className="list-item highlight-area">
+  return isLoading ? loadingIcon() : <li className="list-item highlight-area">
     <h3>{article.title}</h3>
     <p>Author: {article.author}</p>
     <p className="date-time">{formattedDateTime}</p>

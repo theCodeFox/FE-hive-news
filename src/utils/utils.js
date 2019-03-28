@@ -63,3 +63,8 @@ export const handleError = (err) => {
     replace: true,
   })
 }
+
+export const loadingIcon = () => {
+  return <div className="loading-area">
+    <img src={require("../images/loading-bee.png")} alt="loading bee" height="30px" width="30px" className="loading-bee" /></div>
+}

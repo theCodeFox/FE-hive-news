@@ -26,7 +26,7 @@ class Users extends Component {
   }
 
   render() {
-    const { users, removeArticle } = this.props;
+    const { users, removeArticle, isLoading } = this.props;
     const { selectedUser, relatedArticles, relatedComments, username, avatar_url, name, addClicked } = this.state;
     return <main className="users-comments-grid">
       <div className="users-comments-info">
@@ -62,6 +62,7 @@ class Users extends Component {
             key={user.username}
             user={user}
             fetchUser={this.fetchUser}
+            isLoading={isLoading}
           />
         })}
       </ul>
