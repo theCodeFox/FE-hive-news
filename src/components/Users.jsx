@@ -5,6 +5,7 @@ import {
   submitImage,
   addImage,
   handleError,
+  loadingIcon,
 } from '../utils/utils';
 import SelectedUser from './SelectedUser';
 import {
@@ -26,7 +27,7 @@ class Users extends Component {
   }
 
   render() {
-    const { users, removeArticle, isLoading } = this.props;
+    const { users, removeArticle } = this.props;
     const { selectedUser, relatedArticles, relatedComments, username, avatar_url, name, addClicked } = this.state;
     return <main className="users-comments-grid">
       <div className="users-comments-info">
@@ -57,12 +58,12 @@ class Users extends Component {
           removeComment={this.removeComment}
         /></div>
       <ul className="users-comments-list">
+        {users.length === 0 && loadingIcon()}
         {users.map(user => {
           return <User
             key={user.username}
             user={user}
             fetchUser={this.fetchUser}
-            isLoading={isLoading}
           />
         })}
       </ul>

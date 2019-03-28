@@ -20,6 +20,7 @@ import {
   rightImage,
   leftImage,
   handleError,
+  loadingIcon,
 } from '../utils/utils';
 
 class ArticlePage extends Component {
@@ -59,54 +60,55 @@ class ArticlePage extends Component {
     const formattedTime = (article.created_at) && formatDateTime(article.created_at)
     return (
       <main className="article-page">
-        <h4>Topic: {article.topic}</h4>
-        <h3>Title: {article.title}</h3>
-        <h4>Author: {article.author}</h4>
-        <h4 className="date-time">{formattedTime}</h4>
-        <p className="article-body highlight-area">{article.body}</p>
-        <h4 className="center">{voteHeart(article.votes + voteChange)} {article.votes + voteChange} votes</h4>
-        {(access === 'admin' || access === 'member') && <p className="center">Tell us what you thought about the article: <br />
-          {votingButtons(voteChange, this.handleVote)}
-          {(access === 'admin' || user === article.author) && <button className="button-image" onClick={() => {
-            removeArticle(article.article_id)
-            navigate('/topics', { state: { msg: 'article deleted' } })
-          }}>{deleteImage()}</button>}
-        </p>}
+        {(article.article_id) ? <div>
+          <h4>Topic: {article.topic}</h4>
+          <h3>Title: {article.title}</h3>
+          <h4>Author: {article.author}</h4>
+          <h4 className="date-time">{formattedTime}</h4>
+          <p className="article-body highlight-area">{article.body}</p>
+          <h4 className="center">{voteHeart(article.votes + voteChange)} {article.votes + voteChange} votes</h4>
+          {(access === 'admin' || access === 'member') && <p className="center">Tell us what you thought about the article: <br />
+            {votingButtons(voteChange, this.handleVote)}
+            {(access === 'admin' || user === article.author) && <button className="button-image" onClick={() => {
+              removeArticle(article.article_id)
+              navigate('/topics', { state: { msg: 'article deleted' } })
+            }}>{deleteImage()}</button>}
+          </p>}
 
-        <h3>Comments</h3>
-        {addClicked
-          ? <form action="post" onSubmit={this.handleCommentSubmit}>
-            <label htmlFor="comment-body">Add your comment here:</label>
-            <textarea type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required /><br />
-            <div className="center"><button className="button-image">{submitImage()}</button>
-              <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button></div>
-          </form>
-          : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}
-            <div className="right"><label htmlFor="comment-sort">Sort:</label>
-              <select id="comment-sort" onChange={(event) => {
-                this.sortComments('sort_by', event.target.value)
-              }}>
-                <option value="created_at-desc">Newest</option>
-                <option value="created_at-asc">Oldest</option>
-                <option value="votes-desc">Most Loved</option>
-                <option value="votes-asc">Most Hated</option>
-                <option value="author-asc">Author (a-z)</option>
-                <option value="author-desc">Author (z-a)</option>
-              </select></div>
-            <p className="center"><button className="button-image" onClick={() => this.changeCommentPage(-1)}>{leftImage()}{leftImage()}{leftImage()}</button>
-              page {p}
-              <button className="button-image" onClick={() => this.changeCommentPage(1)}>{rightImage()}{rightImage()}{rightImage()}</button>
-            </p>
-          </div>}
-        <ul>{comments.map(comment => {
-          return <ArticleComment
-            key={comment.comment_id}
-            access={access}
-            user={user}
-            comment={comment}
-            removeComment={this.removeComment}
-          />
-        })}</ul>
+          <h3>Comments</h3>
+          {addClicked
+            ? <form action="post" onSubmit={this.handleCommentSubmit}>
+              <label htmlFor="comment-body">Add your comment here:</label>
+              <textarea type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required /><br />
+              <div className="center"><button className="button-image">{submitImage()}</button>
+                <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button></div>
+            </form>
+            : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}
+              <div className="right"><label htmlFor="comment-sort">Sort:</label>
+                <select id="comment-sort" onChange={(event) => {
+                  this.sortComments('sort_by', event.target.value)
+                }}>
+                  <option value="created_at-desc">Newest</option>
+                  <option value="created_at-asc">Oldest</option>
+                  <option value="votes-desc">Most Loved</option>
+                  <option value="votes-asc">Most Hated</option>
+                  <option value="author-asc">Author (a-z)</option>
+                  <option value="author-desc">Author (z-a)</option>
+                </select></div>
+              <p className="center"><button className="button-image" onClick={() => this.changeCommentPage(-1)}>{leftImage()}{leftImage()}{leftImage()}</button>
+                page {p}
+                <button className="button-image" onClick={() => this.changeCommentPage(1)}>{rightImage()}{rightImage()}{rightImage()}</button>
+              </p>
+            </div>}
+          <ul>{comments.map(comment => {
+            return <ArticleComment
+              key={comment.comment_id}
+              access={access}
+              user={user}
+              comment={comment}
+              removeComment={this.removeComment}
+            />
+          })}</ul></div> : loadingIcon()}
       </main>
     )
   }

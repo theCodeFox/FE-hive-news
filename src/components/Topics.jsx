@@ -3,6 +3,7 @@ import Topic from './Topic';
 import Article from './Article';
 import TopicChange from './TopicChange';
 import ArticleChange from './ArticleChange';
+import { loadingIcon } from '../utils/utils';
 
 const Topics = ({
   access,
@@ -14,7 +15,6 @@ const Topics = ({
   addArticle,
   changeArticlePage,
   p,
-  isLoading
 }) => {
   return <main className="topic-article-grid">
     <div className="topic-article-topics">
@@ -23,13 +23,13 @@ const Topics = ({
         topics={topics}
         addTopic={addTopic}
       />
+      {(articles.length === 0) && loadingIcon()}
       <ul>
         {topics.map(topic => {
           return <Topic
             key={topic.slug}
             topic={topic}
             filterArticles={filterArticles}
-            isLoading={isLoading}
           />
         })}</ul>
     </div>
@@ -43,11 +43,11 @@ const Topics = ({
         changeArticlePage={changeArticlePage}
         p={p}
       />
+      {(articles.length === 0) && loadingIcon()}
       <ul>{articles.map(article => {
         return <Article
           key={article.article_id}
           article={article}
-          isLoading={isLoading}
         />
       })}</ul>
     </div>

@@ -33,13 +33,9 @@ class App extends Component {
     articles: [],
     total_articles: 0,
     p: 1,
-    isLoading: false,
   }
 
   componentDidMount = () => {
-    const { isLoading } = this.state;
-    this.setState({ isLoading: true });
-    isLoading && loadingIcon();
     this.fetchAllData()
       .then(([users, topics, articles, totalArticles]) => {
         return this.setState({
@@ -50,7 +46,6 @@ class App extends Component {
           topics,
           articles,
           total_articles: totalArticles,
-          isLoading: false,
         })
       })
       .catch(err => handleError(err))
@@ -64,7 +59,7 @@ class App extends Component {
   }
 
   render() {
-    const { access, user, userAvatar, users, topics, articles, total_articles, p, isLoading } = this.state;
+    const { access, user, userAvatar, users, topics, articles, total_articles, p } = this.state;
     return (
       <div className="App">
         <nav className="nav nav-top">
@@ -88,7 +83,6 @@ class App extends Component {
             addArticle={this.addArticle}
             changeArticlePage={this.changeArticlePage}
             p={p}
-            isLoading={isLoading}
           />
           {(access === 'admin') && <Users
             path="/users"
@@ -96,7 +90,6 @@ class App extends Component {
             articles={articles}
             removeArticle={this.removeArticle}
             addUser={this.addUser}
-            isLoading={isLoading}
           />}
           <ArticlePage
             path="/articles/:article_id"
@@ -141,7 +134,6 @@ class App extends Component {
   }
 
   changeArticlePage = (pageChange) => {
-    this.setState({ isLoading: true });
     const { p, total_articles } = this.state;
     const maxPage = Math.ceil(total_articles / 10);
     let newPage = p + pageChange;
@@ -152,7 +144,6 @@ class App extends Component {
         return this.setState({
           articles,
           p: newPage,
-          isLoading: false,
         })
       })
       .catch(err => handleError(err))
@@ -169,9 +160,6 @@ class App extends Component {
   }
 
   removeArticle = (article_id) => {
-    const { isLoading } = this.state;
-    this.setState({ isLoading: true });
-    isLoading && loadingIcon();
     const newArticles = this.state.articles.filter(article => article.article_id !== article_id)
     deleteArticle(article_id)
       .then(() => {
@@ -183,9 +171,6 @@ class App extends Component {
   }
 
   filterArticles = (query) => {
-    const { isLoading } = this.state;
-    this.setState({ isLoading: true });
-    isLoading && loadingIcon();
     fetchFilteredArticles(query)
       .then(filteredArticles => this.setState({
         articles: filteredArticles, p: 1

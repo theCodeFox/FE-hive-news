@@ -20,4 +20,4 @@ const NotFound = (props) => {
   </main>
 };
 
-export default NotFound
+export default NotFound;
