@@ -44,7 +44,7 @@ const Topics = ({
         p={p}
       />
       {(articles.length === 0) && loadingIcon()}
-      <ul>{articles.map(article => {
+      <ul data-cy="article-list">{articles.map(article => {
         return <Article
           key={article.article_id}
           article={article}

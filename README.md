@@ -1,4 +1,4 @@
-# **theCodeFox-News**
+# **FE-Hive-News**
 Allows user to create their own articles or read other users articles and comments. They can comment and vote on what they like or dislike and make changes to their articles or comments including deleting what is no longer needed.
 
 There are 3 levels of access:

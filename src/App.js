@@ -15,7 +15,7 @@ import {
   fetchFilteredArticles,
   postArticle,
 } from './utils/app-utils';
-import { handleError, loadingIcon } from './utils/utils'
+import { handleError } from './utils/utils'
 import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
 import Login from './components/Login';

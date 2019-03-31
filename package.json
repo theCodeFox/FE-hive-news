@@ -1,7 +1,14 @@
 {
-  "name": "codefox-nc-knews",
+  "name": "fe-hive-knews",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest",
+    "cy:open": "cypress open",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
@@ -11,11 +18,8 @@
     "react-image": "^2.0.0",
     "react-scripts": "2.1.8"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "cypress": "^3.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
