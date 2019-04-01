@@ -14,8 +14,9 @@ class ArticleComment extends Component {
   render() {
     const { access, user, comment, removeComment } = this.props;
     const { voteChange } = this.state;
-    const formattedDateTime = formatDateTime(comment.created_at)
-    return <ul className="list-item highlight-area" key={`user-${comment.article_id}`}>
+    const formattedDateTime = formatDateTime(comment.created_at);
+    console.log(comment.comment_id)
+    return <ul className="list-item highlight-area" key={`user-${comment.article_id}`} data-cy={`article-comment-${comment.comment_id}`}>
       <div className="article-comment">Author: {comment.author}
         <br />
         <p className="date-time">{formattedDateTime}</p>

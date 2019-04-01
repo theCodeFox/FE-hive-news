@@ -7,7 +7,7 @@ const Topic = ({ topic, filterArticles }) => {
     <p>{topic.description}</p>
     <button className="button-image" onClick={() => {
       filterArticles({ topic: topic.slug })
-    }}>{filterImage()}</button>
+    }} data-cy={topic.slug}>{filterImage()}</button>
   </li>
 }
 
