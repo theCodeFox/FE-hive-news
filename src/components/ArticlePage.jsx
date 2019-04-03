@@ -80,7 +80,7 @@ class ArticlePage extends Component {
             ? <form action="post" onSubmit={this.handleCommentSubmit}>
               <label htmlFor="comment-body">Add your comment here:</label>
               <textarea type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} data-cy="comment-add-body" required /><br />
-              <div className="center"><button className="button-image">{submitImage()}</button>
+              <div className="center"><button className="button-image" data-cy="comment-submit">{submitImage()}</button>
                 <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button></div>
             </form>
             : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="comment-add">{addImage()}</button>}

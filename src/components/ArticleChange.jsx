@@ -35,7 +35,7 @@ class ArticleChange extends Component {
           <textarea className="body"
             type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} data-cy="article-add-body" required />
           <br />
-          <button className="button-image">{submitImage()}</button>
+          <button className="button-image" data-cy="article-submit">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
         : <p>There are {total_articles} articles in total<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="article-add">{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>

@@ -23,7 +23,7 @@ class TopicChange extends Component {
           <label htmlFor="description">Description:</label>
           <br />
           <textarea type="text" id="description" onChange={this.handleTopicChange} value={description} data-cy="topic-add-description" required />
-          <button className="button-image">{submitImage()}</button>
+          <button className="button-image" data-cy="topic-submit">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
         : <p>There are {topics.length} topics<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="topic-add">{addImage()}</button>}<br /></p>}
