@@ -16,7 +16,7 @@ const Article = ({ article }) => {
     <p>{voteHeart(article.votes)} {article.votes} votes
     <button className="button-image" onClick={() => {
         navigate(`/articles/${article.article_id}`, { state: { msg: 'article requested' } })
-      }} data-cy={article.article_id}>{viewImage()}</button></p>
+      }}>{viewImage()}</button></p>
   </li>
 }
 
