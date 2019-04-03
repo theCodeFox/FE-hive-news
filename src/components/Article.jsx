@@ -8,7 +8,7 @@ import { navigate } from '@reach/router';
 
 const Article = ({ article }) => {
   const formattedDateTime = formatDateTime(article.created_at)
-  return <li className="list-item highlight-area" data-cy={article.title}>
+  return <li className={`list-item highlight-area ${article.topic}`} data-cy={article.title}>
     <h3>{article.title}</h3>
     <p>Author: {article.author}</p>
     <p className="date-time">{formattedDateTime}</p>
