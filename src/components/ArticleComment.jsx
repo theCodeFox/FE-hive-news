@@ -21,7 +21,7 @@ class ArticleComment extends Component {
         <br />
         <p className="date-time">{formattedDateTime}</p>
         <br />
-        <p className="comment-body">{comment.body}</p>
+        <p className="comment-body" data-cy={comment.body}>{comment.body}</p>
         <p>{voteHeart(comment.votes + voteChange)} {comment.votes + voteChange} votes</p>
         {(access === 'admin' || access === 'member') &&
           <p>Tell us what you thought about the comment: <br />

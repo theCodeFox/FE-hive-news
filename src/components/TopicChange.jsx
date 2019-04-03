@@ -18,15 +18,15 @@ class TopicChange extends Component {
       {addClicked
         ? <form action="post" onSubmit={this.handleTopicSubmit}>
           <label htmlFor="slug">Topic:</label>
-          <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} required />
+          <input type="text" id="slug" name="slug" onChange={this.handleTopicChange} value={slug} data-cy="topic-add-slug" required />
           <br />
           <label htmlFor="description">Description:</label>
           <br />
-          <textarea type="text" id="description" onChange={this.handleTopicChange} value={description} required />
+          <textarea type="text" id="description" onChange={this.handleTopicChange} value={description} data-cy="topic-add-description" required />
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {topics.length} topics<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /></p>}
+        : <p>There are {topics.length} topics<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="topic-add">{addImage()}</button>}<br /></p>}
     </div>
   }
 

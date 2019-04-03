@@ -79,11 +79,11 @@ class ArticlePage extends Component {
           {addClicked
             ? <form action="post" onSubmit={this.handleCommentSubmit}>
               <label htmlFor="comment-body">Add your comment here:</label>
-              <textarea type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} required /><br />
+              <textarea type="text" id="comment-body" name="comment-body" onChange={this.handleCommentChange} value={body} data-cy="comment-add-body" required /><br />
               <div className="center"><button className="button-image">{submitImage()}</button>
                 <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button></div>
             </form>
-            : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}
+            : <div>{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="comment-add">{addImage()}</button>}
               <div className="right"><label htmlFor="comment-sort">Sort:</label>
                 <select id="comment-sort" onChange={(event) => {
                   this.sortComments('sort_by', event.target.value)

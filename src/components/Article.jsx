@@ -8,7 +8,7 @@ import { navigate } from '@reach/router';
 
 const Article = ({ article }) => {
   const formattedDateTime = formatDateTime(article.created_at)
-  return <li className="list-item highlight-area">
+  return <li className="list-item highlight-area" data-cy={article.title}>
     <h3>{article.title}</h3>
     <p>Author: {article.author}</p>
     <p className="date-time">{formattedDateTime}</p>
@@ -16,7 +16,7 @@ const Article = ({ article }) => {
     <p>{voteHeart(article.votes)} {article.votes} votes
     <button className="button-image" onClick={() => {
         navigate(`/articles/${article.article_id}`, { state: { msg: 'article requested' } })
-      }} data-cy={`${article.topic}-article`}>{viewImage()}</button></p>
+      }} data-cy={`${article.topic}-${article.article_id}`}>{viewImage()}</button></p>
   </li>
 }
 

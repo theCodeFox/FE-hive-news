@@ -23,7 +23,7 @@ class ArticleChange extends Component {
         ? <form action="post" onSubmit={this.handleArticleSubmit}>
           <label htmlFor="title">Title:</label>
           <br />
-          <input type="text" name="title" onChange={(event) => this.handleArticleChange('title', event.target.value)} value={title} required />
+          <input type="text" name="title" onChange={(event) => this.handleArticleChange('title', event.target.value)} value={title}  data-cy="article-add-title" required />
           <br />
           <label htmlFor="select-topic">Topic: </label>
           <select onChange={(event) => this.handleArticleChange('topic', event.target.value)}>
@@ -33,18 +33,18 @@ class ArticleChange extends Component {
           <label htmlFor="body">Body:</label>
           <br />
           <textarea className="body"
-            type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} required />
+            type="text" name="body" onChange={(event) => this.handleArticleChange('body', event.target.value)} value={body} data-cy="article-add-body" required />
           <br />
           <button className="button-image">{submitImage()}</button>
           <button className="button-image" onClick={this.handleCancel}>{cancelImage()}</button>
         </form>
-        : <p>There are {total_articles} articles in total<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd}>{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
+        : <p>There are {total_articles} articles in total<br />{(access === 'admin' || access === 'member') && <button className="button-image" onClick={this.toggleAdd} data-cy="article-add">{addImage()}</button>}<br /><label htmlFor="comment-sort">Sort Comments:</label>
           <select id="comment-sort" onChange={(event) => {
             this.sortArticles('sort_by', event.target.value)
           }}>
             <option value="created_at-desc">Newest</option>
             <option value="created_at-asc">Oldest</option>
-            <option value="votes-desc">Most Loved</option>
+            <option value="votes-desc" data-cy="article-sort">Most Loved</option>
             <option value="votes-asc">Most Hated</option>
             <option value="author-asc">Author (a-z)</option>
             <option value="author-desc">Author (z-a)</option>

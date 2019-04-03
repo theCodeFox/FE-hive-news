@@ -47,11 +47,11 @@ class Login extends Component {
             <h3>Hello {user}!</h3>
             <p>Not you? Then please type your username below or simply
               <br />
-              <button className="button-image" onClick={logOut}>{logoutImage()}</button></p>
+              <button className="button-image" onClick={logOut} data-cy="btn-logout">{logoutImage()}</button></p>
             <div className="user-add">
               <form action="post" className="search-form">
                 <label htmlFor="login">Login:</label>
-                <input type="text" id="login" value={loggedInUser} onChange={this.handleLoginChange} required />
+                <input type="text" id="login" value={loggedInUser} onChange={this.handleLoginChange} data-cy="login-input" required />
                 <br />
                 <button className="button-image" onClick={this.handleLoginSubmit}>{submitImage()}</button>
               </form>
